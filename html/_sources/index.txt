@@ -40,15 +40,17 @@ La journalisation du système de fichier assure la cohérence des données en ut
 Il y a 2 méthode de journalisation, celle avec des journaux physique et celle avec des journaux logique.
 Journaux physique : Le journal physique enregistre les modifications de données sur le support avant que celles-ci soient opérées. Les entrées contenues dans ce journal comprennent les données à écrire, ainsi qu'une somme de contrôle, afin d'assurer l'intégrité de celles-ci. Ceci permet d'éviter d'écrire des données pour lesquelles l'entrée du journal est incomplète. Cette méthode pénalise les performances, car chaque écriture nécessite une double écriture sur le support physique, une pour le journal, et une pour les données effectives. Elle est néanmoins acceptée en raison de la garantie de la cohérence des données qu'elle permet.
 Journaux logique : Le journal logique ne stocke que les métadonnées, sacrifiant la tolérance aux pannes pour de meilleures performances. Il permet lui aussi le rejeu des opérations, mais peut lier des métadonnées journalisées à des données non journalisées, causant ainsi une corruption des données.
-Exemple de système de fichier journalisé : 
-------------------------------------------
-Ext3,  Ext4 ou encore BTRFS sont des système de fichier journalisé
-Ext3 Ce système de fichier est une extension de Ext2, auquel on a ajouté une fonction de journalisation. Il est donc possible de convertir une partition ext2 en une partition ext3 de manière simple, la seule modification à ajouter étant le journal. Il n'est utilisable que sur les systèmes Linux.
+
+ | Exemple de système de fichier journalisé : 
+
+Ext3, Ext4 ou encore BTRFS sont des système de fichier journalisé.
+Ext3  est une extension de Ext2, auquel on a ajouté une fonction de journalisation. Il est donc  
+possible de convertir une partition ext2 en une partition ext3 de manière simple, la seule modification à ajouter étant le journal. Il n'est utilisable que sur les systèmes Linux.
 Avec ce système de fichier l’utilisateur à la possibilité de choisir parmi trois mode de journalisation qui sont le mode Journal(correspond à la journalisation physique), mode Writeback, mode Ordered(mode par défaut). Ext4 est son successeur
-BTRFS est un système de fichiers des années 2010 fondé sur le Copy-On-Write (copie sur écriture en français) sous licence GNU GPL, développé conjointement par Oracle, Red Hat, Fujitsu, Intel, SUSE, STRATO AG (en) et autres. En 2012, alors qu'il n'était pas encore considéré comme tout-à-fait stable7, un effort intense de développement et de test est fourni par la communauté afin de faire de Btrfs le successeur de ext4 et ext3, systèmes de fichiers habituels des distributions Linux. OpenSuse 13.2 propose dès son lancement Btrfs par défaut pour la partition racine afin d'assurer la sécurité et laisse le choix entre ext4 et XFS (plus rapide) pour /home.
-Btrfs offre les fonctionnalités suivantes absentes d'autres systèmes de fichiers :
-Instantané (snapshots), 
-somme de contrôle (CheckSum). 
+BTRFS est un système de fichiers des années 2010 fondé sur le Copy-On-Write (copie sur écriture) sous licence GNU GPL, développé conjointement par Oracle, Red Hat, Fujitsu, Intel, SUSE, STRATO AG (en) et autres. En 2012, alors qu'il n'était pas encore considéré comme tout-à-fait stable7, un effort intense de développement et de test est fourni par la communauté afin de faire de Btrfs le successeur de ext4 et ext3, systèmes de fichiers habituels des distributions Linux. OpenSuse 13.2 propose dès son lancement Btrfs par défaut pour la partition racine afin d'assurer la sécurité et laisse le choix entre ext4 et XFS (plus rapide) pour /home.
+ | Btrfs offre les fonctionnalités suivantes absentes d'autres systèmes de fichiers :
+* Instantané (snapshots), 
+* somme de contrôle (CheckSum). 
 Ces caractéristiques sont importantes pour les systèmes Linux, serveurs comme postes clients, car les tailles de stockage comme les configurations tendent à augmenter et à se complexifier.
 La technique de l'instantané, en particulier, garantit de pouvoir faire une sauvegarde cohérente des fichiers du système tels qu'ils étaient au moment précis de l'instantané, même si la sauvegarde dure plusieurs heures et que de nombreux fichiers sont modifiés entretemps.
 
