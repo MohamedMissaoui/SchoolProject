@@ -41,6 +41,7 @@ Il y a 2 méthode de journalisation, celle avec des journaux physique et celle a
 Journaux physique : Le journal physique enregistre les modifications de données sur le support avant que celles-ci soient opérées. Les entrées contenues dans ce journal comprennent les données à écrire, ainsi qu'une somme de contrôle, afin d'assurer l'intégrité de celles-ci. Ceci permet d'éviter d'écrire des données pour lesquelles l'entrée du journal est incomplète. Cette méthode pénalise les performances, car chaque écriture nécessite une double écriture sur le support physique, une pour le journal, et une pour les données effectives. Elle est néanmoins acceptée en raison de la garantie de la cohérence des données qu'elle permet.
 Journaux logique : Le journal logique ne stocke que les métadonnées, sacrifiant la tolérance aux pannes pour de meilleures performances. Il permet lui aussi le rejeu des opérations, mais peut lier des métadonnées journalisées à des données non journalisées, causant ainsi une corruption des données.
 Exemple de système de fichier journalisé : 
+------------------------------------------
 Ext3,  Ext4 ou encore BTRFS sont des système de fichier journalisé
 Ext3 Ce système de fichier est une extension de Ext2, auquel on a ajouté une fonction de journalisation. Il est donc possible de convertir une partition ext2 en une partition ext3 de manière simple, la seule modification à ajouter étant le journal. Il n'est utilisable que sur les systèmes Linux.
 Avec ce système de fichier l’utilisateur à la possibilité de choisir parmi trois mode de journalisation qui sont le mode Journal(correspond à la journalisation physique), mode Writeback, mode Ordered(mode par défaut). Ext4 est son successeur
@@ -104,14 +105,14 @@ détruit.
 On crée ici le snapshot qui apparaitra comme comme un duplicat du volume logique qu'on souhaite
 sauvegarder. Il faut prévoir suffisemment de place pour ce volume logique (environ 500Mos) et
 spécifier à la création qu'il s'agit d'un volume logique
-# lvcreate -L500M -s -n snapshot /dev/volume1/part1 
+``# lvcreate -L500M -s -n snapshot /dev/volume1/part1`` 
 
 Si il n'y a pas assez de place pour le snapshot, celui ci est désactivé.
 Si le système de fichier utilisé est XFS, il faut utiliser la commande 
-# xfs_freeze -f 
+``# xfs_freeze -f`` 
 pour
 verrouiller le système de fichier avant la création du snapshot puis le dévérouiller avec
-# xfs_freeze -u
+``# xfs_freeze -u``
 
 SWAP
 ----
@@ -149,11 +150,11 @@ LES COMMANDES
 
 La commande mount permet de relier une partition ou un périphérique à un répertoire, répertoire par lequel les données présentes sur la partition ou le périphérique sont accessibles.
 Pour monter un périphérique ou une partition avec la commande mount, il faut indiquer :
-le type du système de fichiers par l'option -t 
-le fichier spécial représentant le périphérique ou la partition (généralement /dev/*) ; 
-le répertoire de montage. 
+* le type du système de fichiers par l'option -t 
+* le fichier spécial représentant le périphérique ou la partition (généralement /dev/*) ; 
+* le répertoire de montage. 
 Par exemple, la commande ci-dessous permet de lire un CD-ROM en montant le périphérique /dev/cdrom (cédérom) sur /media/cdrom en indiquant que le système de fichiers est ISO 9660
-mount -t iso9660 /dev/cdrom /media/cdrom
+``# mount -t iso9660 /dev/cdrom /media/cdrom``
 Certaines indications peuvent être omises lorsqu'elles sont spécifiées dans le fichier de configuration listant les points de montage par défaut (/etc/fstab sous Linux, /etc/vfstab sous Solaris...). On peut omettre le type de système de fichiers si la version de mount utilisée est assez « intelligente ». Par contre, même en l'indiquant, on ne pourra jamais monter un système de fichiers que le noyau Unix ne sait pas gérer (parce qu'il n'a pas été configuré pour l'utiliser par exemple).
 Lorsque le montage a réussi, une mise à jour est effectuée dans un fichier système recensant les montages en cours (fichier /etc/mtab sous Linux, /etc/mnttab sous Solaris). L'option -n de mount permet d'éviter cette mise à jour dans des cas bien particuliers où le montage échouerait pour cette raison (si l'on travaille sur un système de fichiers chrooté en lecture seule par exemple).
 On peut également sous les Unix modernes monter des fichiers qui constituent un système de fichiers à eux-seuls (loopback), grâce à l'option -loop (sous Linux, pour Solaris il n'y a pas d'option particulière, mais il faut passer auparavant par la commande lofiadm). Ceci est particulièrement utile dans le cas d'images représentant des disquettes, CD-ROM, DVD. Les commandes dd et mkisofs peuvent aider à fabriquer de tels fichiers.
