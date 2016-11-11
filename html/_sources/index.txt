@@ -185,9 +185,19 @@ FSTAB
 
 Le fichier fstab (file systems table) est la table des différents systèmes de fichiers sur un ordinateur sous Unix/Linux : il contient une liste des disques utilisés au démarrage et des partitions de ces disques. Pour chaque partition, il indique comment elle sera utilisée et intégrée à l’arborescence du système de fichiers global (c'est-à-dire le point de montage). Il se trouve généralement à /etc/fstab.
 
-| Dans les versions récentes d’Unix/Linux, des outils d’administration peuvent automatiquement générer un fichier fstab complet lors de l'installation du système d'exploitation ou proposer une interface graphique pour modifier ce fichier.
+| Voici un exemple de fichier fstab :
 
+| # <file system>        <dir>         <type>    <options>             <dump> <pass>
+| /dev/sda1              /             ext4      defaults              1      1
+| /dev/hdxx              /usr          ext4      defaults              1      1
+| /dev/sda5              swap          swap      defaults              0      0
 
+| <file systems> - définit l'équipement de stockage
+| <dir> - indique à la commande de montage où monter le <file system>. 
+| <type> - définit le type de système de fichiers pour monter le support ou la partition. Un grand nombre de systèmes de fichiers sont supportés, par exemple : ext2, ext3, ext4, reiserfs, xfs, jfs, smbfs, iso9660, vfat, ntfs, swap, and auto. Le type 'auto' laisse la commande de montage deviner quel type de système de fichiers utilisés.
+| <options> - définit des options particulières pour les systèmes de fichier. Certaines options sont pour le système de fichiers lui même.(auto,exec,ro,rw...)
+| <dump> - est utilisé par l'utilitaire dump pour décider quand faire des sauvegardes. Quand il est installé, dump vérifie le chiffre inscrit et décide si le système de fichiers doit être sauvegardé. Les valeurs possibles sont 0 et 1. Si 0, dump va ignorer le système de fichier, si 1, dump fera une sauvegarde. 
+| <pass> fsck lit le chiffre <pass> et détermine dans quel ordre les systèmes de fichiers vont être vérifiés. Le champ peut prendre les valeurs 0,1 et 2. Le système de fichiers root devra avoir la priorité la plus haute : 1, tout les autres systèmes que vous voulez vérifier devront avoir un 2. Les systèmes de fichiers avec un <pass> à 0 ne seront pas vérifier par l'utilitaire fsck. 
 
 
 LES COMMANDES
@@ -202,33 +212,46 @@ LES COMMANDES
 * le fichier spécial représentant le périphérique ou la partition (généralement /dev/*) ; 
 * le répertoire de montage. 
 
-| Par exemple, la commande ci-dessous permet de lire un CD-ROM en montant le périphérique /dev/cdrom (cédérom) sur /media/cdrom en indiquant que le système de fichiers est ISO 9660.
+| Certaines indications peuvent être omises lorsqu'elles sont spécifiées dans le fichier de configuration listant les points de montage par défaut (/etc/fstab sous Linux). On peut omettre le type de système de fichiers si la version de mount utilisée est assez « intelligente ». Par contre, même en l'indiquant, on ne pourra jamais monter un système de fichiers que le noyau Unix ne sait pas gérer (parce qu'il n'a pas été configuré pour l'utiliser par exemple).
 
-| ``# mount -t iso9660 /dev/cdrom /media/cdrom``
+| Lorsque le montage a réussi, une mise à jour est effectuée dans un fichier système recensant les montages en cours (fichier /etc/mtab sous Linux). L'option -n de mount permet d'éviter cette mise à jour dans des cas bien particuliers où le montage échouerait pour cette raison (si l'on travaille sur un système de fichiers chrooté en lecture seule par exemple).
 
-| Certaines indications peuvent être omises lorsqu'elles sont spécifiées dans le fichier de configuration listant les points de montage par défaut (/etc/fstab sous Linux, /etc/vfstab sous Solaris...). On peut omettre le type de système de fichiers si la version de mount utilisée est assez « intelligente ». Par contre, même en l'indiquant, on ne pourra jamais monter un système de fichiers que le noyau Unix ne sait pas gérer (parce qu'il n'a pas été configuré pour l'utiliser par exemple).
-
-| Lorsque le montage a réussi, une mise à jour est effectuée dans un fichier système recensant les montages en cours (fichier /etc/mtab sous Linux, /etc/mnttab sous Solaris). L'option -n de mount permet d'éviter cette mise à jour dans des cas bien particuliers où le montage échouerait pour cette raison (si l'on travaille sur un système de fichiers chrooté en lecture seule par exemple).
-
-| On peut également sous les Unix modernes monter des fichiers qui constituent un système de fichiers à eux-seuls (loopback), grâce à l'option -loop (sous Linux, pour Solaris il n'y a pas d'option particulière, mais il faut passer auparavant par la commande lofiadm). Ceci est particulièrement utile dans le cas d'images représentant des disquettes, CD-ROM, DVD. Les commandes dd et mkisofs peuvent aider à fabriquer de tels fichiers.
+| On peut également sous les Unix modernes monter des fichiers qui constituent un système de fichiers à eux-seuls (loopback), grâce à l'option -loop. Ceci est particulièrement utile dans le cas d'images représentant des disquettes, CD-ROM, DVD. Les commandes dd et mkisofs peuvent aider à fabriquer de tels fichiers.
 
 | Il est possible, sous certaines configurations, de monter (recouvrement total ou partiel) par dessus d'autres systèmes déjà montés.
-De même, en utilisant le système NFS (type de système de fichiers transitant par le réseau), il peut être possible de voir un système de fichiers monté par NFS sur le système que l'on monte par NFS (ré-export), mais c'est plutôt rare.
+
+| Exemple de commande avec mount :
+
+| Disont que l'on vient de modifier le fichier /etc/fstab pour qu'il monte automatiquement une certaine partition au démmarage. Pas besoin de redemarrer l'ordinateur on peut utiliser la commande :
+
+| ``mount -a``
+
+| Si on veut monter le contenu de /dev/sda1 en ext2 dans le repertoire /mnt/test :
+
+| ``mount -t ext2 /dev/sda1 /mnt/test``
+
+| Par exemple, la commande ci-dessous permet de lire un CD-ROM en montant le périphérique /dev/cdrom  sur /media/cdrom en indiquant que le système de fichiers est ISO 9660.
+
+| ``# mount -t iso9660 -o loop/dev/cdrom /mnt/cdrom``
+
+| L'option bind permet de lié un repertoire à un autre.
+
+| ``mount --bind /dev/sda1 /home/test``
 
 **umount :**
 
 Pour démonter une partition ou un périphérique, il faut utiliser la commande umount. Par exemple :
 
-| ``umount /media/cdrom``
+| ``umount /mnt/cdrom``
 
 | Le démontage ne marche que si la partition n'est pas utilisée, à savoir :
 
 * aucun fichier n'est en train d'être lu ou écrit sur la partition ; 
 * aucun processus n'a son répertoire de travail sur la partition.
 
-| Si le démontage est refusé, on peut utiliser la commande fuser pour savoir quels processus l'utilisent. Par exemple (si le démontage de /media/cdrom est refusé) :
+| Si le démontage est refusé, on peut utiliser la commande fuser/lsof pour savoir quels processus l'utilisent. Par exemple (si le démontage de /media/cdrom est refusé) :
 
-| ``fuser /media/cdrom``
+| ``fuser /mnt/cdrom``
 
 | Lorsque le démontage a eu lieu, le fichier /etc/mtab (Linux)  est mis à jour.
 
@@ -239,9 +262,8 @@ Pour démonter une partition ou un périphérique, il faut utiliser la commande 
 
 | Le partitionnement avec fdisk peut entraîner la perte de toutes les données présentes sur le disque sur lequel vous effectuez les opérations.
 
-| Fdisk prend comme argument le chemin du fichier spécial associé au disque. À défaut, il utilisera le premier disque trouvé.
+| Il prend comme argument le chemin du fichier spécial associé au disque. À défaut, il utilisera le premier disque trouvé.
 
-| ``fdisk /dev/sda``
 
 | Cet utilitaire était un programme indépendant GNU fdisk (jusqu'à sa version 2.0 de décembre 2011) mais a été depuis intégré dans la suite GNU util-linux.
 
@@ -249,6 +271,19 @@ Pour démonter une partition ou un périphérique, il faut utiliser la commande 
 
 * Pour des disques IDE, le premier sera nommé hda, le second hdb… 
 * Pour des disques SCSI, le premier s'appellera sda, le second sdb… 
+
+| Exemple de commande avec fdisk :
+
+| Pour lister les partition on peut utiliser la comande :
+
+| ``fdisk -l``
+
+| la commande fdisk peut être utiliser avec la commande blkid pour obtenir des information sur le complémentaire sur le disk tel que son UUiD ou ses attributs.
+| ``blkid /dev/sda1``
+
+| Pour utiliser l'outil de partitionnement on utilise la la commande fdisk et on choisis le disk que l'on veut partitionner.
+
+| ``fdisk /dev/sda``
 
 | Les commandes de fdisk sont appelées par des touches, voici la liste des plus importantes :
 
@@ -261,6 +296,18 @@ Pour démonter une partition ou un périphérique, il faut utiliser la commande 
 * t : modification du type de partition
 * v : vérification de la table des partitions
 * w : sauvegarde des modifications et sortie de fdisk
+
+Si ont veut juste crée une partiton de type ext nous avons juste besoin de crée une partiton via fdisk.
+puis d'utilisé mkfs pour lui donner le type de la partiton.
+
+| ``mkfs.ext4 /dev/sdb1``
+
+on pourra vérifier la crée de la partiton avec la commande :
+
+| ``blkid``
+
+| On aura plus qu'a monter la partition à l'aide de la commande mount et de lui affecter un repertoire.
+| Pour ne pas avoir besoin de remonter le disque à chaque démarrage il faudra changer le fstab.
 
 source :
 ++++++++

@@ -295,7 +295,21 @@ spécifier à la création qu&#8217;il s&#8217;agit d&#8217;un volume logique.</
 <h2>FSTAB<a class="headerlink" href="#fstab" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Le fichier fstab (file systems table) est la table des différents systèmes de fichiers sur un ordinateur sous Unix/Linux&nbsp;: il contient une liste des disques utilisés au démarrage et des partitions de ces disques. Pour chaque partition, il indique comment elle sera utilisée et intégrée à l’arborescence du système de fichiers global (c&#8217;est-à-dire le point de montage). Il se trouve généralement à /etc/fstab.</p>
 <div class="line-block">
-<div class="line">Dans les versions récentes d’Unix/Linux, des outils d’administration peuvent automatiquement générer un fichier fstab complet lors de l&#8217;installation du système d&#8217;exploitation ou proposer une interface graphique pour modifier ce fichier.</div>
+<div class="line">Voici un exemple de fichier fstab :</div>
+</div>
+<div class="line-block">
+<div class="line"># &lt;file system&gt;        &lt;dir&gt;         &lt;type&gt;    &lt;options&gt;             &lt;dump&gt; &lt;pass&gt;</div>
+<div class="line">/dev/sda1              /             ext4      defaults              1      1</div>
+<div class="line">/dev/hdxx              /usr          ext4      defaults              1      1</div>
+<div class="line">/dev/sda5              swap          swap      defaults              0      0</div>
+</div>
+<div class="line-block">
+<div class="line">&lt;file systems&gt; - définit l&#8217;équipement de stockage</div>
+<div class="line">&lt;dir&gt; - indique à la commande de montage où monter le &lt;file system&gt;.</div>
+<div class="line">&lt;type&gt; - définit le type de système de fichiers pour monter le support ou la partition. Un grand nombre de systèmes de fichiers sont supportés, par exemple : ext2, ext3, ext4, reiserfs, xfs, jfs, smbfs, iso9660, vfat, ntfs, swap, and auto. Le type &#8216;auto&#8217; laisse la commande de montage deviner quel type de système de fichiers utilisés.</div>
+<div class="line">&lt;options&gt; - définit des options particulières pour les systèmes de fichier. Certaines options sont pour le système de fichiers lui même.(auto,exec,ro,rw...)</div>
+<div class="line">&lt;dump&gt; - est utilisé par l&#8217;utilitaire dump pour décider quand faire des sauvegardes. Quand il est installé, dump vérifie le chiffre inscrit et décide si le système de fichiers doit être sauvegardé. Les valeurs possibles sont 0 et 1. Si 0, dump va ignorer le système de fichier, si 1, dump fera une sauvegarde.</div>
+<div class="line">&lt;pass&gt; fsck lit le chiffre &lt;pass&gt; et détermine dans quel ordre les systèmes de fichiers vont être vérifiés. Le champ peut prendre les valeurs 0,1 et 2. Le système de fichiers root devra avoir la priorité la plus haute : 1, tout les autres systèmes que vous voulez vérifier devront avoir un 2. Les systèmes de fichiers avec un &lt;pass&gt; à 0 ne seront pas vérifier par l&#8217;utilitaire fsck.</div>
 </div>
 </div>
 <div class="section" id="les-commandes">
@@ -311,28 +325,48 @@ spécifier à la création qu&#8217;il s&#8217;agit d&#8217;un volume logique.</
 <li>le répertoire de montage.</li>
 </ul>
 <div class="line-block">
-<div class="line">Par exemple, la commande ci-dessous permet de lire un CD-ROM en montant le périphérique /dev/cdrom (cédérom) sur /media/cdrom en indiquant que le système de fichiers est ISO 9660.</div>
+<div class="line">Certaines indications peuvent être omises lorsqu&#8217;elles sont spécifiées dans le fichier de configuration listant les points de montage par défaut (/etc/fstab sous Linux). On peut omettre le type de système de fichiers si la version de mount utilisée est assez «&nbsp;intelligente&nbsp;». Par contre, même en l&#8217;indiquant, on ne pourra jamais monter un système de fichiers que le noyau Unix ne sait pas gérer (parce qu&#8217;il n&#8217;a pas été configuré pour l&#8217;utiliser par exemple).</div>
 </div>
 <div class="line-block">
-<div class="line"><code class="docutils literal"><span class="pre">#</span> <span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">iso9660</span> <span class="pre">/dev/cdrom</span> <span class="pre">/media/cdrom</span></code></div>
+<div class="line">Lorsque le montage a réussi, une mise à jour est effectuée dans un fichier système recensant les montages en cours (fichier /etc/mtab sous Linux). L&#8217;option -n de mount permet d&#8217;éviter cette mise à jour dans des cas bien particuliers où le montage échouerait pour cette raison (si l&#8217;on travaille sur un système de fichiers chrooté en lecture seule par exemple).</div>
 </div>
 <div class="line-block">
-<div class="line">Certaines indications peuvent être omises lorsqu&#8217;elles sont spécifiées dans le fichier de configuration listant les points de montage par défaut (/etc/fstab sous Linux, /etc/vfstab sous Solaris...). On peut omettre le type de système de fichiers si la version de mount utilisée est assez «&nbsp;intelligente&nbsp;». Par contre, même en l&#8217;indiquant, on ne pourra jamais monter un système de fichiers que le noyau Unix ne sait pas gérer (parce qu&#8217;il n&#8217;a pas été configuré pour l&#8217;utiliser par exemple).</div>
-</div>
-<div class="line-block">
-<div class="line">Lorsque le montage a réussi, une mise à jour est effectuée dans un fichier système recensant les montages en cours (fichier /etc/mtab sous Linux, /etc/mnttab sous Solaris). L&#8217;option -n de mount permet d&#8217;éviter cette mise à jour dans des cas bien particuliers où le montage échouerait pour cette raison (si l&#8217;on travaille sur un système de fichiers chrooté en lecture seule par exemple).</div>
-</div>
-<div class="line-block">
-<div class="line">On peut également sous les Unix modernes monter des fichiers qui constituent un système de fichiers à eux-seuls (loopback), grâce à l&#8217;option -loop (sous Linux, pour Solaris il n&#8217;y a pas d&#8217;option particulière, mais il faut passer auparavant par la commande lofiadm). Ceci est particulièrement utile dans le cas d&#8217;images représentant des disquettes, CD-ROM, DVD. Les commandes dd et mkisofs peuvent aider à fabriquer de tels fichiers.</div>
+<div class="line">On peut également sous les Unix modernes monter des fichiers qui constituent un système de fichiers à eux-seuls (loopback), grâce à l&#8217;option -loop. Ceci est particulièrement utile dans le cas d&#8217;images représentant des disquettes, CD-ROM, DVD. Les commandes dd et mkisofs peuvent aider à fabriquer de tels fichiers.</div>
 </div>
 <div class="line-block">
 <div class="line">Il est possible, sous certaines configurations, de monter (recouvrement total ou partiel) par dessus d&#8217;autres systèmes déjà montés.</div>
 </div>
-<p>De même, en utilisant le système NFS (type de système de fichiers transitant par le réseau), il peut être possible de voir un système de fichiers monté par NFS sur le système que l&#8217;on monte par NFS (ré-export), mais c&#8217;est plutôt rare.</p>
+<div class="line-block">
+<div class="line">Exemple de commande avec mount :</div>
+</div>
+<div class="line-block">
+<div class="line">Disont que l&#8217;on vient de modifier le fichier /etc/fstab pour qu&#8217;il monte automatiquement une certaine partition au démmarage. Pas besoin de redemarrer l&#8217;ordinateur on peut utiliser la commande :</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">mount</span> <span class="pre">-a</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">Si on veut monter le contenu de /dev/sda1 en ext2 dans le repertoire /mnt/test :</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">ext2</span> <span class="pre">/dev/sda1</span> <span class="pre">/mnt/test</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">Par exemple, la commande ci-dessous permet de lire un CD-ROM en montant le périphérique /dev/cdrom  sur /media/cdrom en indiquant que le système de fichiers est ISO 9660.</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">#</span> <span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">iso9660</span> <span class="pre">-o</span> <span class="pre">loop/dev/cdrom</span> <span class="pre">/mnt/cdrom</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">L&#8217;option bind permet de lié un repertoire à un autre.</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">mount</span> <span class="pre">--bind</span> <span class="pre">/dev/sda1</span> <span class="pre">/home/test</span></code></div>
+</div>
 <p><strong>umount&nbsp;:</strong></p>
 <p>Pour démonter une partition ou un périphérique, il faut utiliser la commande umount. Par exemple&nbsp;:</p>
 <div class="line-block">
-<div class="line"><code class="docutils literal"><span class="pre">umount</span> <span class="pre">/media/cdrom</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">umount</span> <span class="pre">/mnt/cdrom</span></code></div>
 </div>
 <div class="line-block">
 <div class="line">Le démontage ne marche que si la partition n&#8217;est pas utilisée, à savoir&nbsp;:</div>
@@ -342,10 +376,10 @@ spécifier à la création qu&#8217;il s&#8217;agit d&#8217;un volume logique.</
 <li>aucun processus n&#8217;a son répertoire de travail sur la partition.</li>
 </ul>
 <div class="line-block">
-<div class="line">Si le démontage est refusé, on peut utiliser la commande fuser pour savoir quels processus l&#8217;utilisent. Par exemple (si le démontage de /media/cdrom est refusé)&nbsp;:</div>
+<div class="line">Si le démontage est refusé, on peut utiliser la commande fuser/lsof pour savoir quels processus l&#8217;utilisent. Par exemple (si le démontage de /media/cdrom est refusé)&nbsp;:</div>
 </div>
 <div class="line-block">
-<div class="line"><code class="docutils literal"><span class="pre">fuser</span> <span class="pre">/media/cdrom</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">fuser</span> <span class="pre">/mnt/cdrom</span></code></div>
 </div>
 <div class="line-block">
 <div class="line">Lorsque le démontage a eu lieu, le fichier /etc/mtab (Linux)  est mis à jour.</div>
@@ -358,10 +392,7 @@ spécifier à la création qu&#8217;il s&#8217;agit d&#8217;un volume logique.</
 <div class="line">Le partitionnement avec fdisk peut entraîner la perte de toutes les données présentes sur le disque sur lequel vous effectuez les opérations.</div>
 </div>
 <div class="line-block">
-<div class="line">Fdisk prend comme argument le chemin du fichier spécial associé au disque. À défaut, il utilisera le premier disque trouvé.</div>
-</div>
-<div class="line-block">
-<div class="line"><code class="docutils literal"><span class="pre">fdisk</span> <span class="pre">/dev/sda</span></code></div>
+<div class="line">Il prend comme argument le chemin du fichier spécial associé au disque. À défaut, il utilisera le premier disque trouvé.</div>
 </div>
 <div class="line-block">
 <div class="line">Cet utilitaire était un programme indépendant GNU fdisk (jusqu&#8217;à sa version 2.0 de décembre 2011) mais a été depuis intégré dans la suite GNU util-linux.</div>
@@ -373,6 +404,25 @@ spécifier à la création qu&#8217;il s&#8217;agit d&#8217;un volume logique.</
 <li>Pour des disques IDE, le premier sera nommé hda, le second hdb…</li>
 <li>Pour des disques SCSI, le premier s&#8217;appellera sda, le second sdb…</li>
 </ul>
+<div class="line-block">
+<div class="line">Exemple de commande avec fdisk :</div>
+</div>
+<div class="line-block">
+<div class="line">Pour lister les partition on peut utiliser la comande :</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">fdisk</span> <span class="pre">-l</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">la commande fdisk peut être utiliser avec la commande blkid pour obtenir des information sur le complémentaire sur le disk tel que son UUiD ou ses attributs.</div>
+<div class="line"><code class="docutils literal"><span class="pre">blkid</span> <span class="pre">/dev/sda1</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">Pour utiliser l&#8217;outil de partitionnement on utilise la la commande fdisk et on choisis le disk que l&#8217;on veut partitionner.</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">fdisk</span> <span class="pre">/dev/sda</span></code></div>
+</div>
 <div class="line-block">
 <div class="line">Les commandes de fdisk sont appelées par des touches, voici la liste des plus importantes&nbsp;:</div>
 </div>
@@ -387,6 +437,19 @@ spécifier à la création qu&#8217;il s&#8217;agit d&#8217;un volume logique.</
 <li>v&nbsp;: vérification de la table des partitions</li>
 <li>w&nbsp;: sauvegarde des modifications et sortie de fdisk</li>
 </ul>
+<p>Si ont veut juste crée une partiton de type ext nous avons juste besoin de crée une partiton via fdisk.
+puis d&#8217;utilisé mkfs pour lui donner le type de la partiton.</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">mkfs.ext4</span> <span class="pre">/dev/sdb1</span></code></div>
+</div>
+<p>on pourra vérifier la crée de la partiton avec la commande :</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">blkid</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">On aura plus qu&#8217;a monter la partition à l&#8217;aide de la commande mount et de lui affecter un repertoire.</div>
+<div class="line">Pour ne pas avoir besoin de remonter le disque à chaque démarrage il faudra changer le fstab.</div>
+</div>
 <div class="section" id="source">
 <h3>source :<a class="headerlink" href="#source" title="Lien permanent vers ce titre">¶</a></h3>
 <div class="line-block">
