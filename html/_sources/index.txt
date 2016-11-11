@@ -6,19 +6,25 @@
 Welcome to Partitionnement et systeme de fichiers's documentation!
 ==================================================================
 
-Contents:
+Il est permis de copier, distribuer et/ou modifier ce document en respect des termes de la « GNU Free
+Documentation License », Version 1.3 ou supérieure telle que publiée par la Free Software Foundation;
+avec la section "Licence" inaltérable, sans texte de couverture et sans texte de dernière page de
+couverture. Une copie de la licence est incluse à la section intitulée "GNU Free Documentation Licence" ou
+peut être obtenu depuis l’adresse suivante: http ://www.gnu.org/copyleft/fdl.html
+
+.. Contents:
 
 .. toctree::
    :maxdepth: 2
 
 
 
-Indices and tables
-==================
+.. Indices and tables
+.. ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`
 
 LES SYSTEMES DE FICHIERS :
 ==========================
