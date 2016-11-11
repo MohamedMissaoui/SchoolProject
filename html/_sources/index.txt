@@ -107,7 +107,8 @@ Bien qu'ayant été conçu de façon intelligente, ce système de fichiers poss�
 
 | Il reste également l'aspect de la confidentialité des données des utilisateurs sur le système de fichiers. Il faudrait qu'une personne ayant un accès physique sur le média ne soit pas capable de pouvoir reconstituer l'ensemble des données présentes sur ce dernier. 
 
-| **Système de fichier distribué et en réseau :**
+Système de fichier distribué et en réseau :
+---------------------------------------------
 
 | Le Network File System est une technologie (un mécanisme ou un protocole pour faire simple) permettant d'accéder aux fichiers présents sur des machines distantes exactement comme s'ils sont locaux.
 
@@ -118,7 +119,8 @@ Bien qu'ayant été conçu de façon intelligente, ce système de fichiers poss�
 
 | En fait NFS est composé de quatre protocoles distincts qui reposent tous sur les RPC et donc sur le programme rpc.portmap. Un des rôles de ce programme est de convertir les numéros de programmes RPC en numéros de ports. Quand un serveur RPC démarre, il va préciser à portmap quel port il utilisera et les numéros de programmes RPC qu'il gère. Quand un client souhaite envoyer une requête RPC vers un numéro de programme donné, il contacte d'abord le serveur portmap pour obtenir le numéro de port sur lequel tourne le programme souhaité. Ensuite, il adresse les paquets RPC au port concerné.
 
-| **Disque virtuel :**
+Disque virtuel :
+----------------
 
 Un disque dur virtuel fournit un espace de stockage pour une machine virtuelle. Au sein de la machine virtuelle, le disque dur virtuel est représenté comme un disque physique. La machine virtuelle l'utilise également comme s'il s'agissait d'un disque physique. Techniquement, le disque dur virtuel est un fichier résidant sur un disque physique auquel le système d'exploitation hôte peut accéder. Sur le disque physique, le fichier du disque dur virtuel est stocké au format .vhd. En règle générale, vous pouvez stocker un fichier .vhd sur n'importe quel type de dispositif de stockage accessible par le système d'exploitation hôte. 
 
@@ -130,9 +132,10 @@ Un disque dur virtuel fournit un espace de stockage pour une machine virtuelle. 
 
 * Disque dur virtuel de différenciation : Ce type requiert un espace de stockage physique réduit lors de la création du disque, puis un espace de plus en plus important à mesure que la taille du disque augmente. La taille maximale d'un disque de différenciation est régie par la taille maximale de son disque dur parent.
 
-| **Snapshot :**
+Snapshot :
+----------
 
-En informatique, un instantané est l'état d'un système à un instant donné. On utilise particulièrement cette notion dans le cadre des systèmes de fichiers, des bases de données ou des machines virtuelles. Pour réaliser un instantané, on utilise en général une méthode qui diffère d'une sauvegarde traditionnelle du système par le fait que les données à sauvegarder ne sont copiées sur le périphérique de sauvegarde qu'au moment où elles sont modifiées sur le système dont on crée l'instantané.
+En informatique, un instantané est l'état d'un système à un instant donné. On utilise particulièrement cette notion dans le cadre des systèmes de fichiers, des bases de données ou des machines virtuelles. 
 
 | Une sauvegarde complète d'une grande quantité de données peut être longue à exécuter. Par ailleurs, celle-ci nécessite généralement le verrouillage des données à sauvegarder pour empêcher que des données en cours de sauvegarde ne soient modifiées et ne produisent ainsi une sauvegarde qui ne soit pas représentative du système à un instant donné. Cela ne pose pas de problème particulier pour effectuer des sauvegardes sur des ordinateurs personnels ou des serveurs internes de petites entreprises, puisqu'il est parfaitement acceptable qu'un tel système puisse être indisponible durant un certain laps de temps. Cependant, sur des serveurs utilisés à grande échelle, exigeant de grands uptimes, on ne peut recourir à de telles méthodes.
 
@@ -140,24 +143,26 @@ En informatique, un instantané est l'état d'un système à un instant donné. 
 
 | Cette méthode ne permet cependant pas de protéger les données contre une panne de disque dur par exemple, puisque seules les données qui auront été modifiées seront copiées dans l'instantané. Pour pallier cela, on commence parfois par copier la totalité du système à sauvegarder par la méthode traditionnelle, après quoi on peut créer des instantanés successifs dont les parties non modifiées pointeront non pas vers les données originales mais vers la première copie complète.
 
-https://www.ibisc.univ-evry.fr/~petit/Enseignement/AdminSystem/IUP-ASR/2004-2005/snapshot.pdf
+| **Les commande :**
 
-| Les commandes : La création de snapshot avec LVM se fait de façon simple : on crée un nouveau volume logique qui contient le snapshot, on monte ce volume, on effectue sa sauvegarde, on démonte le volume puis on le détruit.
-| Création du snapshot : 
-On crée ici le snapshot qui apparaitra comme comme un duplicat du volume logique qu'on souhaite
-sauvegarder. Il faut prévoir suffisemment de place pour ce volume logique (environ 500Mos) et
-spécifier à la création qu'il s'agit d'un volume logique.
+Pour faire une sauvegarde complete d'une machine on peut utiliser la commande rsync qui peut nous copier le contenu de la machine dans un repertoire.
 
-| ``# lvcreate -L500M -s -n snapshot /dev/volume1/part1`` 
+| ``rsync -aAXv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} /* /mnt/backup/``
 
-| Si il n'y a pas assez de place pour le snapshot, celui ci est désactivé.
-| Si le système de fichier utilisé est XFS, il faut utiliser la commande :
- 
-| ``# xfs_freeze -f`` 
+Pour crée des snapshot régulière on peut utliser le logiciel rsnapshot.
 
-| pour verrouiller le système de fichier avant la création du snapshot puis le dévérouiller avec :
+| ``apt-get install rsnapshot``
+| ``nano /etc/rsnapshot.conf``
 
-| ``# xfs_freeze -u``
+Dans le fichier de conf on peut modifier l'interval de sauvegarde, le repertoire etc..
+
+On peut automatiser la création de snapshot.
+
+Pour l'activer manuellement on utilise la commande :
+
+| ``systemctl start rsnapshot@hourly``
+
+cette commande permet de prendre des snapshot toute les heurs.
 
 SWAP
 ----
