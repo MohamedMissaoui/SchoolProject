@@ -29,7 +29,7 @@ peut être obtenu depuis l’adresse suivante: http ://www.gnu.org/copyleft/fdl.
 LES SYSTEMES DE FICHIERS :
 ==========================
 
-Quesqu’un systeme de fichier ?
+Quesqu’un système de fichier ?
 ------------------------------
 
 Dans le cœur d'un ordinateur, tout est constitué de 1 et de 0, mais l'organisation de ces données n'est pas aussi simple. Un bit est un 1 ou un 0 ; un octet (byte en anglais) est composé de huit bits ; un kilo-octet binaire(kibibyte) est un groupe de 1024 octets ; un méga-octet binaire(mebibyte) se constitue de 1024 kilo-octets binaires ; et ainsi se poursuit la chaîne.
@@ -96,10 +96,11 @@ Vous l’aurez compris un système de fichier non journalisé est un systeme de 
 
 | **Exemple de système de fichier non journalisé :**
 
-|Ext2 : Les fonctionnalités standard de  permettent d'accéder à des partitions de 4 téraoctets (1 téraoctets = 1 024 gigaoctets), alors que la version ext1 ne permettait que des partitions de 2 gigaoctets (1 gigaoctets = 1 024 mégaoctets). La taille maximale des fichiers avec un système ext2 standard est de 2 gigaoctets. De plus, lors de la création du système de fichiers, le système réserve une certaine quantité d'espace pour le super-utilisateur (root), en général 5 %. Ceci permet au super-utilisateur de pouvoir se connecter sur le système et de faire des tâches administratives quand le système de fichiers est plein pour les utilisateurs. Ext2Fs gère aussi les noms de fichiers longs (255 caractères) et prend en compte tous les caractères excepté "NUL" et "/".
+| Ext2 : Les fonctionnalités standard permettent d'accéder à des partitions de 4 téraoctets (1 téraoctets = 1 024 gigaoctets), alors que la version ext1 ne permettait que des partitions de 2 gigaoctets (1 gigaoctets = 1 024 mégaoctets). La taille maximale des fichiers avec un système ext2 standard est de 2 gigaoctets. De plus, lors de la création du système de fichiers, le système réserve une certaine quantité d'espace pour le super-utilisateur (root), en général 5 %. Ceci permet au super-utilisateur de pouvoir se connecter sur le système et de faire des tâches administratives quand le système de fichiers est plein pour les utilisateurs. Ext2Fs gère aussi les noms de fichiers longs (255 caractères) et prend en compte tous les caractères excepté "NUL" et "/".
 
 **Les lacunes :**
-Bien qu'ayant été conçu de façon intelligente, ce système de fichiers possède des limites inacceptables pour des machines nécessitant une disponibilité importante. Le temps de vérification du système de fichiers est proportionnel à sa taille, puisque le système va lire tous les inodes et vérifier leurs cohérences. Par conséquent, plus le système de fichiers est important, et plus cette vérification est longue. De plus, un crash peut détruire, ou rendre inaccessibles des données pourtant déjà présentes sur le disque. 
+
+| Bien qu'ayant été conçu de façon intelligente, ce système de fichiers possède des limites inacceptables pour des machines nécessitant une disponibilité importante. Le temps de vérification du système de fichiers est proportionnel à sa taille, puisque le système va lire tous les inodes et vérifier leurs cohérences. Par conséquent, plus le système de fichiers est important, et plus cette vérification est longue. De plus, un crash peut détruire, ou rendre inaccessibles des données pourtant déjà présentes sur le disque. 
 
 | Une autre limitation importante vient de l'absence d'ACL (Access Control Lists soit listes de contrôle d'accès) utilisées au niveau du système de fichiers, de manière native par Linux. La présence d'ACL permet en effet de gérer de manière très fine les droits d'accès aux fichiers.
 
@@ -107,8 +108,8 @@ Bien qu'ayant été conçu de façon intelligente, ce système de fichiers poss�
 
 | Il reste également l'aspect de la confidentialité des données des utilisateurs sur le système de fichiers. Il faudrait qu'une personne ayant un accès physique sur le média ne soit pas capable de pouvoir reconstituer l'ensemble des données présentes sur ce dernier. 
 
-Système de fichier distribué et en réseau :
----------------------------------------------
+Système de fichier distribué et en réseau
+-----------------------------------------
 
 | Le Network File System est une technologie (un mécanisme ou un protocole pour faire simple) permettant d'accéder aux fichiers présents sur des machines distantes exactement comme s'ils sont locaux.
 
@@ -119,7 +120,7 @@ Système de fichier distribué et en réseau :
 
 | En fait NFS est composé de quatre protocoles distincts qui reposent tous sur les RPC et donc sur le programme rpc.portmap. Un des rôles de ce programme est de convertir les numéros de programmes RPC en numéros de ports. Quand un serveur RPC démarre, il va préciser à portmap quel port il utilisera et les numéros de programmes RPC qu'il gère. Quand un client souhaite envoyer une requête RPC vers un numéro de programme donné, il contacte d'abord le serveur portmap pour obtenir le numéro de port sur lequel tourne le programme souhaité. Ensuite, il adresse les paquets RPC au port concerné.
 
-| **les commandes :**
+| **Les commandes :**
 
 | NFS côté Serveur :
 
@@ -129,7 +130,7 @@ Editer le fichier
 
 | ``nano /etc/exports``
 
-Disont que l'on veut partager le repertoire /home/test à la machine debian1.domaine.org
+Disons que l'on veut partager le répertoire /home/test à la machine debian1.domaine.org
 
 | ``/home/test	debian1.domaine.org(rw,root_squash)``
 rw = read,write
@@ -145,8 +146,8 @@ Pour monter le répertoire /home/test2/ partagé par la machine dont le nom DNS 
 
 umount de /mnt/test une fois que vous n'avez plus besoin du partage.
 
-Disque virtuel :
-----------------
+Disque virtuel
+--------------
 
 Un disque dur virtuel fournit un espace de stockage pour une machine virtuelle. Au sein de la machine virtuelle, le disque dur virtuel est représenté comme un disque physique. La machine virtuelle l'utilise également comme s'il s'agissait d'un disque physique. Techniquement, le disque dur virtuel est un fichier résidant sur un disque physique auquel le système d'exploitation hôte peut accéder. Sur le disque physique, le fichier du disque dur virtuel est stocké au format .vhd. En règle générale, vous pouvez stocker un fichier .vhd sur n'importe quel type de dispositif de stockage accessible par le système d'exploitation hôte. 
 
@@ -158,8 +159,8 @@ Un disque dur virtuel fournit un espace de stockage pour une machine virtuelle. 
 
 * Disque dur virtuel de différenciation : Ce type requiert un espace de stockage physique réduit lors de la création du disque, puis un espace de plus en plus important à mesure que la taille du disque augmente. La taille maximale d'un disque de différenciation est régie par la taille maximale de son disque dur parent.
 
-Snapshot :
-----------
+Snapshot
+--------
 
 En informatique, un instantané est l'état d'un système à un instant donné. On utilise particulièrement cette notion dans le cadre des systèmes de fichiers, des bases de données ou des machines virtuelles. 
 
@@ -169,18 +170,18 @@ En informatique, un instantané est l'état d'un système à un instant donné. 
 
 | Cette méthode ne permet cependant pas de protéger les données contre une panne de disque dur par exemple, puisque seules les données qui auront été modifiées seront copiées dans l'instantané. Pour pallier cela, on commence parfois par copier la totalité du système à sauvegarder par la méthode traditionnelle, après quoi on peut créer des instantanés successifs dont les parties non modifiées pointeront non pas vers les données originales mais vers la première copie complète.
 
-| **Les commande :**
+| **Les commandes :**
 
-Pour faire une sauvegarde complete d'une machine on peut utiliser la commande rsync qui peut nous copier le contenu de la machine dans un repertoire.
+Pour faire une sauvegarde complete d'une machine on peut utiliser la commande rsync qui peut nous copier le contenu de la machine dans un répertoire.
 
 | ``rsync -aAXv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} /* /mnt/backup/``
 
-Pour crée des snapshot régulière on peut utliser le logiciel rsnapshot.
+Pour créer des snapshot régulière on peut utliser le logiciel rsnapshot.
 
 | ``apt-get install rsnapshot``
 | ``nano /etc/rsnapshot.conf``
 
-Dans le fichier de conf on peut modifier l'interval de sauvegarde, le repertoire etc..
+Dans le fichier de conf on peut modifier l'intervalle de sauvegarde, le répertoire etc..
 
 On peut automatiser la création de snapshot.
 
@@ -188,9 +189,9 @@ Pour l'activer manuellement on utilise la commande :
 
 | ``systemctl start rsnapshot@hourly``
 
-cette commande permet de prendre des snapshot toute les heurs.
+cette commande permet de prendre des snapshot toutes les heures.
 
-SWAP
+Swap
 ----
 
 Le swap est appelé en français espace ou partition d'échange. 
@@ -198,10 +199,10 @@ Le swap est appelé en français espace ou partition d'échange.
 
 | L'espace d'échange, aussi connu sous le nom de mémoire virtuelle, peut être présent sous forme de partition ou de fichier, et peut être créé ou supprimé à n'importe quel moment. L'espace d'échange est recommandé pour les machines ayant moins de 1 Go de mémoire vive (RAM), mais dépend surtout des préférences personnelles du propriétaire de l'ordinateur. La seule contrainte vient lors de l'activation de l'hibernation, nécessitant un fichier d'échange de taille supérieur ou égale à la taille de mémoire vive physiquement installée. 
 
-FRAGMENTATION
+Fragmentation
 -------------
 
-| Il n’y a pas vraiment de fragmentation sous linux étant donnée que les systeme de fichier sont fait de tel sorte à ne pas se fragmenter.
+| Il n’y a pas vraiment de fragmentation sous linux étant donnée que les systèmes de fichiers sont fait de tel sorte à ne pas se fragmenter.
 
 | Les systèmes Ext2, Ext3, et Ext4 (systèmes de fichiers utilisés par la plupart des distributions Linux actuelles) organisent et répartissent les fichiers sur le disque dur de manière intelligente. Au lieu de placer les fichiers près les uns des autres sur le disque dur, ces systèmes de fichiers dispersent les fichiers sur tout le disque, laissant une grande quantité d'espace libre entre eux. Quand un fichier est modifié et que sa taille augmente, il y a généralement beaucoup d'espace libre pour enregistrer le fichier sur des secteurs contiguë. S'il y a fragmentation, le système de fichiers tentera de déplacer les fichiers afin de réduire la fragmentation en utilisation normale sans avoir besoin d'un utilitaire de défragmentation.
 
@@ -211,7 +212,7 @@ FRAGMENTATION
 
 | Vous pouvez vérifier la fragmentation de votre disque à l'aide de la commande ``fsck``.
 
-FSTAB
+fstab
 -----
 
 Le fichier fstab (file systems table) est la table des différents systèmes de fichiers sur un ordinateur sous Unix/Linux : il contient une liste des disques utilisés au démarrage et des partitions de ces disques. Pour chaque partition, il indique comment elle sera utilisée et intégrée à l’arborescence du système de fichiers global (c'est-à-dire le point de montage). Il se trouve généralement à /etc/fstab.
@@ -231,7 +232,7 @@ Le fichier fstab (file systems table) est la table des différents systèmes de 
 | <pass> fsck lit le chiffre <pass> et détermine dans quel ordre les systèmes de fichiers vont être vérifiés. Le champ peut prendre les valeurs 0,1 et 2. Le système de fichiers root devra avoir la priorité la plus haute : 1, tout les autres systèmes que vous voulez vérifier devront avoir un 2. Les systèmes de fichiers avec un <pass> à 0 ne seront pas vérifier par l'utilitaire fsck. 
 
 
-LES COMMANDES
+Les Commandes
 -------------
 
 **mount :**
@@ -253,11 +254,11 @@ LES COMMANDES
 
 | Exemple de commande avec mount :
 
-| Disont que l'on vient de modifier le fichier /etc/fstab pour qu'il monte automatiquement une certaine partition au démmarage. Pas besoin de redemarrer l'ordinateur on peut utiliser la commande :
+| Disons que l'on vient de modifier le fichier /etc/fstab pour qu'il monte automatiquement une certaine partition au démmarage. Pas besoin de redemarrer l'ordinateur on peut utiliser la commande :
 
 | ``mount -a``
 
-| Si on veut monter le contenu de /dev/sda1 en ext2 dans le repertoire /mnt/test :
+| Si on veut monter le contenu de /dev/sda1 en ext2 dans le répertoire /mnt/test :
 
 | ``mount -t ext2 /dev/sda1 /mnt/test``
 
@@ -265,7 +266,7 @@ LES COMMANDES
 
 | ``# mount -t iso9660 -o loop/dev/cdrom /mnt/cdrom``
 
-| L'option bind permet de lié un repertoire à un autre.
+| L'option bind permet de lier un répertoire à un autre.
 
 | ``mount --bind /dev/sda1 /home/test``
 
@@ -305,7 +306,7 @@ Pour démonter une partition ou un périphérique, il faut utiliser la commande 
 
 | Exemple de commande avec fdisk :
 
-| Pour lister les partition on peut utiliser la comande :
+| Pour lister les partition on peut utiliser la commande :
 
 | ``fdisk -l``
 
@@ -313,7 +314,7 @@ Pour démonter une partition ou un périphérique, il faut utiliser la commande 
 
 | ``blkid /dev/sda1``
 
-| Pour utiliser l'outil de partitionnement on utilise la la commande fdisk et on choisis le disk que l'on veut partitionner.
+| Pour utiliser l'outil de partitionnement on utilise la commande fdisk et on choisit le disk que l'on veut partitionner.
 
 | ``fdisk /dev/sda``
 
@@ -329,16 +330,16 @@ Pour démonter une partition ou un périphérique, il faut utiliser la commande 
 * v : vérification de la table des partitions
 * w : sauvegarde des modifications et sortie de fdisk
 
-Si ont veut juste crée une partiton de type ext nous avons juste besoin de crée une partiton via fdisk.
-puis d'utilisé mkfs pour lui donner le type de la partiton.
+Si on veut juste créer une partiton de type ext nous avons juste besoin de créer une partiton via fdisk.
+puis d'utiliser mkfs pour lui donner le type de la partiton.
 
 | ``mkfs.ext4 /dev/sdb1``
 
-on pourra vérifier la crée de la partiton avec la commande :
+on pourra vérifier la création de la partiton avec la commande :
 
 | ``blkid``
 
-| On aura plus qu'a monter la partition à l'aide de la commande mount et de lui affecter un repertoire.
+| On aura plus qu'à monter la partition à l'aide de la commande mount et de lui affecter un répertoire.
 | Pour ne pas avoir besoin de remonter le disque à chaque démarrage il faudra changer le fstab.
 
 | ``mount -t ext /dev/sdb1 /mnt/test``
@@ -347,8 +348,8 @@ on pourra vérifier la crée de la partiton avec la commande :
 
 | ``/dev/sdb1	/mnt/test	ext4	defaults	0	0``
 
-source :
-++++++++
+Sources :
++++++++++
 
 | http://lea-linux.org/documentations/Fstab
 | http://www.linux-france.org/article/cel/alcove/etude-fichiers.html/ch1.html

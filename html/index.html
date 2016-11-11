@@ -48,17 +48,17 @@
   <ul>
 <li><a class="reference internal" href="#">Welcome to Partitionnement et systeme de fichiers&#8217;s documentation!</a></li>
 <li><a class="reference internal" href="#les-systemes-de-fichiers">LES SYSTEMES DE FICHIERS&nbsp;:</a><ul>
-<li><a class="reference internal" href="#quesquun-systeme-de-fichier">Quesqu’un systeme de fichier&nbsp;?</a></li>
+<li><a class="reference internal" href="#quesquun-systeme-de-fichier">Quesqu’un système de fichier&nbsp;?</a></li>
 <li><a class="reference internal" href="#systeme-de-fichier-journalise">Système de fichier journalisé</a></li>
 <li><a class="reference internal" href="#systeme-de-fichier-non-journalise">Système de fichier non journalisé</a></li>
-<li><a class="reference internal" href="#systeme-de-fichier-distribue-et-en-reseau">Système de fichier distribué et en réseau&nbsp;:</a></li>
-<li><a class="reference internal" href="#disque-virtuel">Disque virtuel&nbsp;:</a></li>
-<li><a class="reference internal" href="#snapshot">Snapshot&nbsp;:</a></li>
-<li><a class="reference internal" href="#swap">SWAP</a></li>
-<li><a class="reference internal" href="#fragmentation">FRAGMENTATION</a></li>
-<li><a class="reference internal" href="#fstab">FSTAB</a></li>
-<li><a class="reference internal" href="#les-commandes">LES COMMANDES</a><ul>
-<li><a class="reference internal" href="#source">source :</a></li>
+<li><a class="reference internal" href="#systeme-de-fichier-distribue-et-en-reseau">Système de fichier distribué et en réseau</a></li>
+<li><a class="reference internal" href="#disque-virtuel">Disque virtuel</a></li>
+<li><a class="reference internal" href="#snapshot">Snapshot</a></li>
+<li><a class="reference internal" href="#swap">Swap</a></li>
+<li><a class="reference internal" href="#fragmentation">Fragmentation</a></li>
+<li><a class="reference internal" href="#fstab">fstab</a></li>
+<li><a class="reference internal" href="#les-commandes">Les Commandes</a><ul>
+<li><a class="reference internal" href="#sources">Sources :</a></li>
 </ul>
 </li>
 </ul>
@@ -108,7 +108,7 @@ peut être obtenu depuis l’adresse suivante: http ://www.gnu.org/copyleft/fdl.
 <div class="section" id="les-systemes-de-fichiers">
 <h1>LES SYSTEMES DE FICHIERS&nbsp;:<a class="headerlink" href="#les-systemes-de-fichiers" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="quesquun-systeme-de-fichier">
-<h2>Quesqu’un systeme de fichier&nbsp;?<a class="headerlink" href="#quesquun-systeme-de-fichier" title="Lien permanent vers ce titre">¶</a></h2>
+<h2>Quesqu’un système de fichier&nbsp;?<a class="headerlink" href="#quesquun-systeme-de-fichier" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Dans le cœur d&#8217;un ordinateur, tout est constitué de 1 et de 0, mais l&#8217;organisation de ces données n&#8217;est pas aussi simple. Un bit est un 1 ou un 0 ; un octet (byte en anglais) est composé de huit bits ; un kilo-octet binaire(kibibyte) est un groupe de 1024 octets ; un méga-octet binaire(mebibyte) se constitue de 1024 kilo-octets binaires ; et ainsi se poursuit la chaîne.</p>
 <div class="line-block">
 <div class="line">Un disque dur (hard drive ou hard disk) stocke toutes vos données : à chaque fois que vous enregistrez un fichier, vous écrivez des milliers de 1 et de 0 sur un disque métallique, le piquant littéralement et créant une indentation qui pourra plus tard être relue en tant que 1 ou 0 par votre ordinateur. En réalité, vous magnétisez des milliers de petits bâtons (que nous appellerons clusters) qui seront polarisés dans un sens ou dans un autre (N-S ou S-N) ; cette polarisation différente sera ré-interprétée plus tard par l&#8217;ordinateur en tant que 1 ou 0.</div>
@@ -190,9 +190,13 @@ La technique de l&#8217;instantané, en particulier, garantit de pouvoir faire u
 <div class="line-block">
 <div class="line"><strong>Exemple de système de fichier non journalisé&nbsp;:</strong></div>
 </div>
-<p><a href="#id1"><span class="problematic" id="id2">|</span></a>Ext2&nbsp;: Les fonctionnalités standard de  permettent d&#8217;accéder à des partitions de 4 téraoctets (1 téraoctets = 1 024 gigaoctets), alors que la version ext1 ne permettait que des partitions de 2 gigaoctets (1 gigaoctets = 1 024 mégaoctets). La taille maximale des fichiers avec un système ext2 standard est de 2 gigaoctets. De plus, lors de la création du système de fichiers, le système réserve une certaine quantité d&#8217;espace pour le super-utilisateur (root), en général 5&nbsp;%. Ceci permet au super-utilisateur de pouvoir se connecter sur le système et de faire des tâches administratives quand le système de fichiers est plein pour les utilisateurs. Ext2Fs gère aussi les noms de fichiers longs (255 caractères) et prend en compte tous les caractères excepté &#8220;NUL&#8221; et &#8220;/&#8221;.</p>
-<p><strong>Les lacunes&nbsp;:</strong>
-Bien qu&#8217;ayant été conçu de façon intelligente, ce système de fichiers possède des limites inacceptables pour des machines nécessitant une disponibilité importante. Le temps de vérification du système de fichiers est proportionnel à sa taille, puisque le système va lire tous les inodes et vérifier leurs cohérences. Par conséquent, plus le système de fichiers est important, et plus cette vérification est longue. De plus, un crash peut détruire, ou rendre inaccessibles des données pourtant déjà présentes sur le disque.</p>
+<div class="line-block">
+<div class="line">Ext2&nbsp;: Les fonctionnalités standard permettent d&#8217;accéder à des partitions de 4 téraoctets (1 téraoctets = 1 024 gigaoctets), alors que la version ext1 ne permettait que des partitions de 2 gigaoctets (1 gigaoctets = 1 024 mégaoctets). La taille maximale des fichiers avec un système ext2 standard est de 2 gigaoctets. De plus, lors de la création du système de fichiers, le système réserve une certaine quantité d&#8217;espace pour le super-utilisateur (root), en général 5&nbsp;%. Ceci permet au super-utilisateur de pouvoir se connecter sur le système et de faire des tâches administratives quand le système de fichiers est plein pour les utilisateurs. Ext2Fs gère aussi les noms de fichiers longs (255 caractères) et prend en compte tous les caractères excepté &#8220;NUL&#8221; et &#8220;/&#8221;.</div>
+</div>
+<p><strong>Les lacunes&nbsp;:</strong></p>
+<div class="line-block">
+<div class="line">Bien qu&#8217;ayant été conçu de façon intelligente, ce système de fichiers possède des limites inacceptables pour des machines nécessitant une disponibilité importante. Le temps de vérification du système de fichiers est proportionnel à sa taille, puisque le système va lire tous les inodes et vérifier leurs cohérences. Par conséquent, plus le système de fichiers est important, et plus cette vérification est longue. De plus, un crash peut détruire, ou rendre inaccessibles des données pourtant déjà présentes sur le disque.</div>
+</div>
 <div class="line-block">
 <div class="line">Une autre limitation importante vient de l&#8217;absence d&#8217;ACL (Access Control Lists soit listes de contrôle d&#8217;accès) utilisées au niveau du système de fichiers, de manière native par Linux. La présence d&#8217;ACL permet en effet de gérer de manière très fine les droits d&#8217;accès aux fichiers.</div>
 </div>
@@ -204,7 +208,7 @@ Bien qu&#8217;ayant été conçu de façon intelligente, ce système de fichiers
 </div>
 </div>
 <div class="section" id="systeme-de-fichier-distribue-et-en-reseau">
-<h2>Système de fichier distribué et en réseau&nbsp;:<a class="headerlink" href="#systeme-de-fichier-distribue-et-en-reseau" title="Lien permanent vers ce titre">¶</a></h2>
+<h2>Système de fichier distribué et en réseau<a class="headerlink" href="#systeme-de-fichier-distribue-et-en-reseau" title="Lien permanent vers ce titre">¶</a></h2>
 <div class="line-block">
 <div class="line">Le Network File System est une technologie (un mécanisme ou un protocole pour faire simple) permettant d&#8217;accéder aux fichiers présents sur des machines distantes exactement comme s&#8217;ils sont locaux.</div>
 </div>
@@ -219,7 +223,7 @@ Bien qu&#8217;ayant été conçu de façon intelligente, ce système de fichiers
 <div class="line">En fait NFS est composé de quatre protocoles distincts qui reposent tous sur les RPC et donc sur le programme rpc.portmap. Un des rôles de ce programme est de convertir les numéros de programmes RPC en numéros de ports. Quand un serveur RPC démarre, il va préciser à portmap quel port il utilisera et les numéros de programmes RPC qu&#8217;il gère. Quand un client souhaite envoyer une requête RPC vers un numéro de programme donné, il contacte d&#8217;abord le serveur portmap pour obtenir le numéro de port sur lequel tourne le programme souhaité. Ensuite, il adresse les paquets RPC au port concerné.</div>
 </div>
 <div class="line-block">
-<div class="line"><strong>les commandes :</strong></div>
+<div class="line"><strong>Les commandes :</strong></div>
 </div>
 <div class="line-block">
 <div class="line">NFS côté Serveur :</div>
@@ -231,7 +235,7 @@ Bien qu&#8217;ayant été conçu de façon intelligente, ce système de fichiers
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">nano</span> <span class="pre">/etc/exports</span></code></div>
 </div>
-<p>Disont que l&#8217;on veut partager le repertoire /home/test à la machine debian1.domaine.org</p>
+<p>Disons que l&#8217;on veut partager le répertoire /home/test à la machine debian1.domaine.org</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">/home/test</span>&nbsp; <span class="pre">debian1.domaine.org(rw,root_squash)</span></code></div>
 </div>
@@ -250,7 +254,7 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 <p>umount de /mnt/test une fois que vous n&#8217;avez plus besoin du partage.</p>
 </div>
 <div class="section" id="disque-virtuel">
-<h2>Disque virtuel&nbsp;:<a class="headerlink" href="#disque-virtuel" title="Lien permanent vers ce titre">¶</a></h2>
+<h2>Disque virtuel<a class="headerlink" href="#disque-virtuel" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Un disque dur virtuel fournit un espace de stockage pour une machine virtuelle. Au sein de la machine virtuelle, le disque dur virtuel est représenté comme un disque physique. La machine virtuelle l&#8217;utilise également comme s&#8217;il s&#8217;agissait d&#8217;un disque physique. Techniquement, le disque dur virtuel est un fichier résidant sur un disque physique auquel le système d&#8217;exploitation hôte peut accéder. Sur le disque physique, le fichier du disque dur virtuel est stocké au format .vhd. En règle générale, vous pouvez stocker un fichier .vhd sur n&#8217;importe quel type de dispositif de stockage accessible par le système d&#8217;exploitation hôte.</p>
 <div class="line-block">
 <div class="line">Les types de disques et les exigences de stockage sont les suivants&nbsp;:</div>
@@ -262,7 +266,7 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 </ul>
 </div>
 <div class="section" id="snapshot">
-<h2>Snapshot&nbsp;:<a class="headerlink" href="#snapshot" title="Lien permanent vers ce titre">¶</a></h2>
+<h2>Snapshot<a class="headerlink" href="#snapshot" title="Lien permanent vers ce titre">¶</a></h2>
 <p>En informatique, un instantané est l&#8217;état d&#8217;un système à un instant donné. On utilise particulièrement cette notion dans le cadre des systèmes de fichiers, des bases de données ou des machines virtuelles.</p>
 <div class="line-block">
 <div class="line">Une sauvegarde complète d&#8217;une grande quantité de données peut être longue à exécuter. Par ailleurs, celle-ci nécessite généralement le verrouillage des données à sauvegarder pour empêcher que des données en cours de sauvegarde ne soient modifiées et ne produisent ainsi une sauvegarde qui ne soit pas représentative du système à un instant donné. Cela ne pose pas de problème particulier pour effectuer des sauvegardes sur des ordinateurs personnels ou des serveurs internes de petites entreprises, puisqu&#8217;il est parfaitement acceptable qu&#8217;un tel système puisse être indisponible durant un certain laps de temps. Cependant, sur des serveurs utilisés à grande échelle, exigeant de grands uptimes, on ne peut recourir à de telles méthodes.</div>
@@ -274,27 +278,27 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 <div class="line">Cette méthode ne permet cependant pas de protéger les données contre une panne de disque dur par exemple, puisque seules les données qui auront été modifiées seront copiées dans l&#8217;instantané. Pour pallier cela, on commence parfois par copier la totalité du système à sauvegarder par la méthode traditionnelle, après quoi on peut créer des instantanés successifs dont les parties non modifiées pointeront non pas vers les données originales mais vers la première copie complète.</div>
 </div>
 <div class="line-block">
-<div class="line"><strong>Les commande :</strong></div>
+<div class="line"><strong>Les commandes :</strong></div>
 </div>
-<p>Pour faire une sauvegarde complete d&#8217;une machine on peut utiliser la commande rsync qui peut nous copier le contenu de la machine dans un repertoire.</p>
+<p>Pour faire une sauvegarde complete d&#8217;une machine on peut utiliser la commande rsync qui peut nous copier le contenu de la machine dans un répertoire.</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">rsync</span> <span class="pre">-aAXv</span> <span class="pre">--exclude={&quot;/dev/*&quot;,&quot;/proc/*&quot;,&quot;/sys/*&quot;,&quot;/tmp/*&quot;,&quot;/run/*&quot;,&quot;/mnt/*&quot;,&quot;/media/*&quot;,&quot;/lost+found&quot;}</span> <span class="pre">/*</span> <span class="pre">/mnt/backup/</span></code></div>
 </div>
-<p>Pour crée des snapshot régulière on peut utliser le logiciel rsnapshot.</p>
+<p>Pour créer des snapshot régulière on peut utliser le logiciel rsnapshot.</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">rsnapshot</span></code></div>
 <div class="line"><code class="docutils literal"><span class="pre">nano</span> <span class="pre">/etc/rsnapshot.conf</span></code></div>
 </div>
-<p>Dans le fichier de conf on peut modifier l&#8217;interval de sauvegarde, le repertoire etc..</p>
+<p>Dans le fichier de conf on peut modifier l&#8217;intervalle de sauvegarde, le répertoire etc..</p>
 <p>On peut automatiser la création de snapshot.</p>
 <p>Pour l&#8217;activer manuellement on utilise la commande :</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">systemctl</span> <span class="pre">start</span> <span class="pre">rsnapshot&#64;hourly</span></code></div>
 </div>
-<p>cette commande permet de prendre des snapshot toute les heurs.</p>
+<p>cette commande permet de prendre des snapshot toutes les heures.</p>
 </div>
 <div class="section" id="swap">
-<h2>SWAP<a class="headerlink" href="#swap" title="Lien permanent vers ce titre">¶</a></h2>
+<h2>Swap<a class="headerlink" href="#swap" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Le swap est appelé en français espace ou partition d&#8217;échange.
 | Linux divise la RAM (mémoire vive) physique en blocs de mémoire appelés pages. Le swapping est le procédé par lequel une page de mémoire est copiée vers un espace prédéfini sur le disque dur, appelé swap (espace d&#8217;échange), permettant de libérer cette page mémoire. Les tailles combinées de la mémoire physique et de l&#8217;espace d&#8217;échange correspondent à la quantité de mémoire virtuelle disponible.</p>
 <div class="line-block">
@@ -302,9 +306,9 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 </div>
 </div>
 <div class="section" id="fragmentation">
-<h2>FRAGMENTATION<a class="headerlink" href="#fragmentation" title="Lien permanent vers ce titre">¶</a></h2>
+<h2>Fragmentation<a class="headerlink" href="#fragmentation" title="Lien permanent vers ce titre">¶</a></h2>
 <div class="line-block">
-<div class="line">Il n’y a pas vraiment de fragmentation sous linux étant donnée que les systeme de fichier sont fait de tel sorte à ne pas se fragmenter.</div>
+<div class="line">Il n’y a pas vraiment de fragmentation sous linux étant donnée que les systèmes de fichiers sont fait de tel sorte à ne pas se fragmenter.</div>
 </div>
 <div class="line-block">
 <div class="line">Les systèmes Ext2, Ext3, et Ext4 (systèmes de fichiers utilisés par la plupart des distributions Linux actuelles) organisent et répartissent les fichiers sur le disque dur de manière intelligente. Au lieu de placer les fichiers près les uns des autres sur le disque dur, ces systèmes de fichiers dispersent les fichiers sur tout le disque, laissant une grande quantité d&#8217;espace libre entre eux. Quand un fichier est modifié et que sa taille augmente, il y a généralement beaucoup d&#8217;espace libre pour enregistrer le fichier sur des secteurs contiguë. S&#8217;il y a fragmentation, le système de fichiers tentera de déplacer les fichiers afin de réduire la fragmentation en utilisation normale sans avoir besoin d&#8217;un utilitaire de défragmentation.</div>
@@ -320,7 +324,7 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 </div>
 </div>
 <div class="section" id="fstab">
-<h2>FSTAB<a class="headerlink" href="#fstab" title="Lien permanent vers ce titre">¶</a></h2>
+<h2>fstab<a class="headerlink" href="#fstab" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Le fichier fstab (file systems table) est la table des différents systèmes de fichiers sur un ordinateur sous Unix/Linux&nbsp;: il contient une liste des disques utilisés au démarrage et des partitions de ces disques. Pour chaque partition, il indique comment elle sera utilisée et intégrée à l’arborescence du système de fichiers global (c&#8217;est-à-dire le point de montage). Il se trouve généralement à /etc/fstab.</p>
 <div class="line-block">
 <div class="line">Voici un exemple de fichier fstab :</div>
@@ -341,7 +345,7 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 </div>
 </div>
 <div class="section" id="les-commandes">
-<h2>LES COMMANDES<a class="headerlink" href="#les-commandes" title="Lien permanent vers ce titre">¶</a></h2>
+<h2>Les Commandes<a class="headerlink" href="#les-commandes" title="Lien permanent vers ce titre">¶</a></h2>
 <p><strong>mount&nbsp;:</strong></p>
 <div class="line-block">
 <div class="line">La commande mount permet de relier une partition ou un périphérique à un répertoire, répertoire par lequel les données présentes sur la partition ou le périphérique sont accessibles.</div>
@@ -349,7 +353,7 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 </div>
 <ul class="simple">
 <li>le type du système de fichiers par l&#8217;option -t</li>
-<li>le fichier spécial représentant le périphérique ou la partition (généralement /dev/<a href="#id3"><span class="problematic" id="id4">*</span></a>)&nbsp;;</li>
+<li>le fichier spécial représentant le périphérique ou la partition (généralement /dev/<a href="#id1"><span class="problematic" id="id2">*</span></a>)&nbsp;;</li>
 <li>le répertoire de montage.</li>
 </ul>
 <div class="line-block">
@@ -368,13 +372,13 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 <div class="line">Exemple de commande avec mount :</div>
 </div>
 <div class="line-block">
-<div class="line">Disont que l&#8217;on vient de modifier le fichier /etc/fstab pour qu&#8217;il monte automatiquement une certaine partition au démmarage. Pas besoin de redemarrer l&#8217;ordinateur on peut utiliser la commande :</div>
+<div class="line">Disons que l&#8217;on vient de modifier le fichier /etc/fstab pour qu&#8217;il monte automatiquement une certaine partition au démmarage. Pas besoin de redemarrer l&#8217;ordinateur on peut utiliser la commande :</div>
 </div>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">mount</span> <span class="pre">-a</span></code></div>
 </div>
 <div class="line-block">
-<div class="line">Si on veut monter le contenu de /dev/sda1 en ext2 dans le repertoire /mnt/test :</div>
+<div class="line">Si on veut monter le contenu de /dev/sda1 en ext2 dans le répertoire /mnt/test :</div>
 </div>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">ext2</span> <span class="pre">/dev/sda1</span> <span class="pre">/mnt/test</span></code></div>
@@ -386,7 +390,7 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 <div class="line"><code class="docutils literal"><span class="pre">#</span> <span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">iso9660</span> <span class="pre">-o</span> <span class="pre">loop/dev/cdrom</span> <span class="pre">/mnt/cdrom</span></code></div>
 </div>
 <div class="line-block">
-<div class="line">L&#8217;option bind permet de lié un repertoire à un autre.</div>
+<div class="line">L&#8217;option bind permet de lier un répertoire à un autre.</div>
 </div>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">mount</span> <span class="pre">--bind</span> <span class="pre">/dev/sda1</span> <span class="pre">/home/test</span></code></div>
@@ -436,7 +440,7 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 <div class="line">Exemple de commande avec fdisk :</div>
 </div>
 <div class="line-block">
-<div class="line">Pour lister les partition on peut utiliser la comande :</div>
+<div class="line">Pour lister les partition on peut utiliser la commande :</div>
 </div>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">fdisk</span> <span class="pre">-l</span></code></div>
@@ -448,7 +452,7 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 <div class="line"><code class="docutils literal"><span class="pre">blkid</span> <span class="pre">/dev/sda1</span></code></div>
 </div>
 <div class="line-block">
-<div class="line">Pour utiliser l&#8217;outil de partitionnement on utilise la la commande fdisk et on choisis le disk que l&#8217;on veut partitionner.</div>
+<div class="line">Pour utiliser l&#8217;outil de partitionnement on utilise la commande fdisk et on choisit le disk que l&#8217;on veut partitionner.</div>
 </div>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">fdisk</span> <span class="pre">/dev/sda</span></code></div>
@@ -467,17 +471,17 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 <li>v&nbsp;: vérification de la table des partitions</li>
 <li>w&nbsp;: sauvegarde des modifications et sortie de fdisk</li>
 </ul>
-<p>Si ont veut juste crée une partiton de type ext nous avons juste besoin de crée une partiton via fdisk.
-puis d&#8217;utilisé mkfs pour lui donner le type de la partiton.</p>
+<p>Si on veut juste créer une partiton de type ext nous avons juste besoin de créer une partiton via fdisk.
+puis d&#8217;utiliser mkfs pour lui donner le type de la partiton.</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">mkfs.ext4</span> <span class="pre">/dev/sdb1</span></code></div>
 </div>
-<p>on pourra vérifier la crée de la partiton avec la commande :</p>
+<p>on pourra vérifier la création de la partiton avec la commande :</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">blkid</span></code></div>
 </div>
 <div class="line-block">
-<div class="line">On aura plus qu&#8217;a monter la partition à l&#8217;aide de la commande mount et de lui affecter un repertoire.</div>
+<div class="line">On aura plus qu&#8217;à monter la partition à l&#8217;aide de la commande mount et de lui affecter un répertoire.</div>
 <div class="line">Pour ne pas avoir besoin de remonter le disque à chaque démarrage il faudra changer le fstab.</div>
 </div>
 <div class="line-block">
@@ -489,8 +493,8 @@ puis d&#8217;utilisé mkfs pour lui donner le type de la partiton.</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">/dev/sdb1</span>&nbsp;&nbsp; <span class="pre">/mnt/test</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">ext4</span>&nbsp;&nbsp;&nbsp; <span class="pre">defaults</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">0</span></code></div>
 </div>
-<div class="section" id="source">
-<h3>source :<a class="headerlink" href="#source" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="section" id="sources">
+<h3>Sources :<a class="headerlink" href="#sources" title="Lien permanent vers ce titre">¶</a></h3>
 <div class="line-block">
 <div class="line"><a class="reference external" href="http://lea-linux.org/documentations/Fstab">http://lea-linux.org/documentations/Fstab</a></div>
 <div class="line"><a class="reference external" href="http://www.linux-france.org/article/cel/alcove/etude-fichiers.html/ch1.html">http://www.linux-france.org/article/cel/alcove/etude-fichiers.html/ch1.html</a></div>
