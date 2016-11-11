@@ -265,21 +265,21 @@ Pour démonter une partition ou un périphérique, il faut utiliser la commande 
 source :
 ++++++++
 
-http://lea-linux.org/documentations/Fstab
-http://www.linux-france.org/article/cel/alcove/etude-fichiers.html/ch1.html
-http://www.tecmint.com/fdisk-commands-to-manage-linux-disk-partitions/
-https://www.ibisc.univ-evry.fr/~petit/Enseignement/AdminSystem/IUP-ASR/2004-2005/snapshot.pdf
-http://www.misfu.com/installation-configuration-nfs-linux.html
-https://fr.wikipedia.org/wiki/Network_File_System
-https://doc.ubuntu-fr.org/btrfs
-https://fr.wikipedia.org/wiki/Network_File_System
-https://fr.wikipedia.org/wiki/Syst%C3%A8me_de_fichiers_distribu%C3%A9
-https://fr.wikipedia.org/wiki/Point_de_montage
-https://fr.wikipedia.org/wiki/Ext4
-https://fr.wikipedia.org/wiki/Ext2
-https://fr.wikipedia.org/wiki/Disque_virtuel
-https://fr.wikipedia.org/wiki/Instantan%C3%A9_(informatique)
-https://fr.wikipedia.org/wiki/Fstab
-https://fr.wikipedia.org/wiki/Fdisk
-https://fr.wikipedia.org/wiki/D%C3%A9fragmentation_(informatique)
-https://fr.wikipedia.org/wiki/XFS
+| http://lea-linux.org/documentations/Fstab
+| http://www.linux-france.org/article/cel/alcove/etude-fichiers.html/ch1.html
+| http://www.tecmint.com/fdisk-commands-to-manage-linux-disk-partitions/
+| https://www.ibisc.univ-evry.fr/~petit/Enseignement/AdminSystem/IUP-ASR/2004-2005/snapshot.pdf
+| http://www.misfu.com/installation-configuration-nfs-linux.html
+| https://fr.wikipedia.org/wiki/Network_File_System
+| https://doc.ubuntu-fr.org/btrfs
+| https://fr.wikipedia.org/wiki/Network_File_System
+| https://fr.wikipedia.org/wiki/Syst%C3%A8me_de_fichiers_distribu%C3%A9
+| https://fr.wikipedia.org/wiki/Point_de_montage
+| https://fr.wikipedia.org/wiki/Ext4
+| https://fr.wikipedia.org/wiki/Ext2
+| https://fr.wikipedia.org/wiki/Disque_virtuel
+| https://fr.wikipedia.org/wiki/Instantan%C3%A9_(informatique)
+| https://fr.wikipedia.org/wiki/Fstab
+| https://fr.wikipedia.org/wiki/Fdisk
+| https://fr.wikipedia.org/wiki/D%C3%A9fragmentation_(informatique)
+| https://fr.wikipedia.org/wiki/XFS
