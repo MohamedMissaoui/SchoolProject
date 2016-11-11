@@ -218,6 +218,36 @@ Bien qu&#8217;ayant été conçu de façon intelligente, ce système de fichiers
 <div class="line-block">
 <div class="line">En fait NFS est composé de quatre protocoles distincts qui reposent tous sur les RPC et donc sur le programme rpc.portmap. Un des rôles de ce programme est de convertir les numéros de programmes RPC en numéros de ports. Quand un serveur RPC démarre, il va préciser à portmap quel port il utilisera et les numéros de programmes RPC qu&#8217;il gère. Quand un client souhaite envoyer une requête RPC vers un numéro de programme donné, il contacte d&#8217;abord le serveur portmap pour obtenir le numéro de port sur lequel tourne le programme souhaité. Ensuite, il adresse les paquets RPC au port concerné.</div>
 </div>
+<div class="line-block">
+<div class="line"><strong>les commandes :</strong></div>
+</div>
+<div class="line-block">
+<div class="line">NFS côté Serveur :</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">nfs-kernel-server</span></code></div>
+</div>
+<p>Editer le fichier</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">nano</span> <span class="pre">/etc/exports</span></code></div>
+</div>
+<p>Disont que l&#8217;on veut partager le repertoire /home/test à la machine debian1.domaine.org</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">/home/test</span>&nbsp; <span class="pre">debian1.domaine.org(rw,root_squash)</span></code></div>
+</div>
+<p>rw = read,write
+root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur /home/test.</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">/etc/init.d/nfs-kernel-server</span> <span class="pre">reload</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">NFS côté Client :</div>
+</div>
+<p>Pour monter le répertoire /home/test2/ partagé par la machine dont le nom DNS est debian2.domaine.org dans le répertoire /mnt/test déjà créé, utilisez la commande mount :</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">nfs</span> <span class="pre">debian2.domaine.org:/home/test2</span> <span class="pre">mnt/test</span></code></div>
+</div>
+<p>umount de /mnt/test une fois que vous n&#8217;avez plus besoin du partage.</p>
 </div>
 <div class="section" id="disque-virtuel">
 <h2>Disque virtuel&nbsp;:<a class="headerlink" href="#disque-virtuel" title="Lien permanent vers ce titre">¶</a></h2>

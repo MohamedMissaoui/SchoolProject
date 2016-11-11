@@ -119,6 +119,32 @@ Système de fichier distribué et en réseau :
 
 | En fait NFS est composé de quatre protocoles distincts qui reposent tous sur les RPC et donc sur le programme rpc.portmap. Un des rôles de ce programme est de convertir les numéros de programmes RPC en numéros de ports. Quand un serveur RPC démarre, il va préciser à portmap quel port il utilisera et les numéros de programmes RPC qu'il gère. Quand un client souhaite envoyer une requête RPC vers un numéro de programme donné, il contacte d'abord le serveur portmap pour obtenir le numéro de port sur lequel tourne le programme souhaité. Ensuite, il adresse les paquets RPC au port concerné.
 
+| **les commandes :**
+
+| NFS côté Serveur :
+
+| ``apt-get install nfs-kernel-server``
+
+Editer le fichier
+
+| ``nano /etc/exports``
+
+Disont que l'on veut partager le repertoire /home/test à la machine debian1.domaine.org
+
+| ``/home/test	debian1.domaine.org(rw,root_squash)``
+rw = read,write
+root_squash = le root de la machine debian1 n'aura pas les droit root sur /home/test.
+
+| ``/etc/init.d/nfs-kernel-server reload``
+
+| NFS côté Client :
+
+Pour monter le répertoire /home/test2/ partagé par la machine dont le nom DNS est debian2.domaine.org dans le répertoire /mnt/test déjà créé, utilisez la commande mount :
+
+| ``mount -t nfs debian2.domaine.org:/home/test2 mnt/test``
+
+umount de /mnt/test une fois que vous n'avez plus besoin du partage.
+
 Disque virtuel :
 ----------------
 
