@@ -415,6 +415,8 @@ spécifier à la création qu&#8217;il s&#8217;agit d&#8217;un volume logique.</
 </div>
 <div class="line-block">
 <div class="line">la commande fdisk peut être utiliser avec la commande blkid pour obtenir des information sur le complémentaire sur le disk tel que son UUiD ou ses attributs.</div>
+</div>
+<div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">blkid</span> <span class="pre">/dev/sda1</span></code></div>
 </div>
 <div class="line-block">
@@ -449,6 +451,15 @@ puis d&#8217;utilisé mkfs pour lui donner le type de la partiton.</p>
 <div class="line-block">
 <div class="line">On aura plus qu&#8217;a monter la partition à l&#8217;aide de la commande mount et de lui affecter un repertoire.</div>
 <div class="line">Pour ne pas avoir besoin de remonter le disque à chaque démarrage il faudra changer le fstab.</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">ext</span> <span class="pre">/dev/sdb1</span> <span class="pre">/mnt/test</span></code></div>
+</div>
+<div class="line-block">
+<div class="line">Ajouter dans le fichier fstab :</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">/dev/sdb1</span>&nbsp;&nbsp; <span class="pre">/mnt/test</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">ext4</span>&nbsp;&nbsp;&nbsp; <span class="pre">defaults</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">0</span></code></div>
 </div>
 <div class="section" id="source">
 <h3>source :<a class="headerlink" href="#source" title="Lien permanent vers ce titre">¶</a></h3>

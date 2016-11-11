@@ -279,6 +279,7 @@ Pour démonter une partition ou un périphérique, il faut utiliser la commande 
 | ``fdisk -l``
 
 | la commande fdisk peut être utiliser avec la commande blkid pour obtenir des information sur le complémentaire sur le disk tel que son UUiD ou ses attributs.
+
 | ``blkid /dev/sda1``
 
 | Pour utiliser l'outil de partitionnement on utilise la la commande fdisk et on choisis le disk que l'on veut partitionner.
@@ -308,6 +309,12 @@ on pourra vérifier la crée de la partiton avec la commande :
 
 | On aura plus qu'a monter la partition à l'aide de la commande mount et de lui affecter un repertoire.
 | Pour ne pas avoir besoin de remonter le disque à chaque démarrage il faudra changer le fstab.
+
+| ``mount -t ext /dev/sdb1 /mnt/test``
+
+| Ajouter dans le fichier fstab :
+
+| ``/dev/sdb1	/mnt/test	ext4	defaults	0	0``
 
 source :
 ++++++++

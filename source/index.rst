@@ -312,6 +312,9 @@ on pourra vérifier la crée de la partiton avec la commande :
 
 | ``mount -t ext /dev/sdb1 /mnt/test``
 
+| Ajouter dans le fichier fstab :
+
+| ``/dev/sdb1	/mnt/test	ext4	defaults	0	0``
 
 source :
 ++++++++
