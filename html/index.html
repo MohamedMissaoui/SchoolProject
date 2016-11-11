@@ -54,7 +54,10 @@
 <li><a class="reference internal" href="#swap">SWAP</a></li>
 <li><a class="reference internal" href="#fragmentation">FRAGMENTATION</a></li>
 <li><a class="reference internal" href="#fstab">FSTAB</a></li>
-<li><a class="reference internal" href="#les-commandes">LES COMMANDES</a></li>
+<li><a class="reference internal" href="#les-commandes">LES COMMANDES</a><ul>
+<li><a class="reference internal" href="#source">source :</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -244,8 +247,10 @@ Bien qu&#8217;ayant été conçu de façon intelligente, ce système de fichiers
 </div>
 <p>On crée ici le snapshot qui apparaitra comme comme un duplicat du volume logique qu&#8217;on souhaite
 sauvegarder. Il faut prévoir suffisemment de place pour ce volume logique (environ 500Mos) et
-spécifier à la création qu&#8217;il s&#8217;agit d&#8217;un volume logique.
-| <code class="docutils literal"><span class="pre">#</span> <span class="pre">lvcreate</span> <span class="pre">-L500M</span> <span class="pre">-s</span> <span class="pre">-n</span> <span class="pre">snapshot</span> <span class="pre">/dev/volume1/part1</span></code></p>
+spécifier à la création qu&#8217;il s&#8217;agit d&#8217;un volume logique.</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">#</span> <span class="pre">lvcreate</span> <span class="pre">-L500M</span> <span class="pre">-s</span> <span class="pre">-n</span> <span class="pre">snapshot</span> <span class="pre">/dev/volume1/part1</span></code></div>
+</div>
 <div class="line-block">
 <div class="line">Si il n&#8217;y a pas assez de place pour le snapshot, celui ci est désactivé.</div>
 <div class="line">Si le système de fichier utilisé est XFS, il faut utiliser la commande :</div>
@@ -382,6 +387,27 @@ spécifier à la création qu&#8217;il s&#8217;agit d&#8217;un volume logique.
 <li>v&nbsp;: vérification de la table des partitions</li>
 <li>w&nbsp;: sauvegarde des modifications et sortie de fdisk</li>
 </ul>
+<div class="section" id="source">
+<h3>source :<a class="headerlink" href="#source" title="Lien permanent vers ce titre">¶</a></h3>
+<p><a class="reference external" href="http://lea-linux.org/documentations/Fstab">http://lea-linux.org/documentations/Fstab</a>
+<a class="reference external" href="http://www.linux-france.org/article/cel/alcove/etude-fichiers.html/ch1.html">http://www.linux-france.org/article/cel/alcove/etude-fichiers.html/ch1.html</a>
+<a class="reference external" href="http://www.tecmint.com/fdisk-commands-to-manage-linux-disk-partitions/">http://www.tecmint.com/fdisk-commands-to-manage-linux-disk-partitions/</a>
+<a class="reference external" href="https://www.ibisc.univ-evry.fr/~petit/Enseignement/AdminSystem/IUP-ASR/2004-2005/snapshot.pdf">https://www.ibisc.univ-evry.fr/~petit/Enseignement/AdminSystem/IUP-ASR/2004-2005/snapshot.pdf</a>
+<a class="reference external" href="http://www.misfu.com/installation-configuration-nfs-linux.html">http://www.misfu.com/installation-configuration-nfs-linux.html</a>
+<a class="reference external" href="https://fr.wikipedia.org/wiki/Network_File_System">https://fr.wikipedia.org/wiki/Network_File_System</a>
+<a class="reference external" href="https://doc.ubuntu-fr.org/btrfs">https://doc.ubuntu-fr.org/btrfs</a>
+<a class="reference external" href="https://fr.wikipedia.org/wiki/Network_File_System">https://fr.wikipedia.org/wiki/Network_File_System</a>
+<a class="reference external" href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_de_fichiers_distribu%C3%A9">https://fr.wikipedia.org/wiki/Syst%C3%A8me_de_fichiers_distribu%C3%A9</a>
+<a class="reference external" href="https://fr.wikipedia.org/wiki/Point_de_montage">https://fr.wikipedia.org/wiki/Point_de_montage</a>
+<a class="reference external" href="https://fr.wikipedia.org/wiki/Ext4">https://fr.wikipedia.org/wiki/Ext4</a>
+<a class="reference external" href="https://fr.wikipedia.org/wiki/Ext2">https://fr.wikipedia.org/wiki/Ext2</a>
+<a class="reference external" href="https://fr.wikipedia.org/wiki/Disque_virtuel">https://fr.wikipedia.org/wiki/Disque_virtuel</a>
+<a class="reference external" href="https://fr.wikipedia.org/wiki/Instantan%C3%A9_(informatique">https://fr.wikipedia.org/wiki/Instantan%C3%A9_(informatique</a>)
+<a class="reference external" href="https://fr.wikipedia.org/wiki/Fstab">https://fr.wikipedia.org/wiki/Fstab</a>
+<a class="reference external" href="https://fr.wikipedia.org/wiki/Fdisk">https://fr.wikipedia.org/wiki/Fdisk</a>
+<a class="reference external" href="https://fr.wikipedia.org/wiki/D%C3%A9fragmentation_(informatique">https://fr.wikipedia.org/wiki/D%C3%A9fragmentation_(informatique</a>)
+<a class="reference external" href="https://fr.wikipedia.org/wiki/XFS">https://fr.wikipedia.org/wiki/XFS</a></p>
+</div>
 </div>
 </div>
 

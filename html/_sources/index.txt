@@ -147,6 +147,7 @@ https://www.ibisc.univ-evry.fr/~petit/Enseignement/AdminSystem/IUP-ASR/2004-2005
 On crée ici le snapshot qui apparaitra comme comme un duplicat du volume logique qu'on souhaite
 sauvegarder. Il faut prévoir suffisemment de place pour ce volume logique (environ 500Mos) et
 spécifier à la création qu'il s'agit d'un volume logique.
+
 | ``# lvcreate -L500M -s -n snapshot /dev/volume1/part1`` 
 
 | Si il n'y a pas assez de place pour le snapshot, celui ci est désactivé.
@@ -260,3 +261,25 @@ Pour démonter une partition ou un périphérique, il faut utiliser la commande 
 * t : modification du type de partition
 * v : vérification de la table des partitions
 * w : sauvegarde des modifications et sortie de fdisk
+
+source :
+++++++++
+
+http://lea-linux.org/documentations/Fstab
+http://www.linux-france.org/article/cel/alcove/etude-fichiers.html/ch1.html
+http://www.tecmint.com/fdisk-commands-to-manage-linux-disk-partitions/
+https://www.ibisc.univ-evry.fr/~petit/Enseignement/AdminSystem/IUP-ASR/2004-2005/snapshot.pdf
+http://www.misfu.com/installation-configuration-nfs-linux.html
+https://fr.wikipedia.org/wiki/Network_File_System
+https://doc.ubuntu-fr.org/btrfs
+https://fr.wikipedia.org/wiki/Network_File_System
+https://fr.wikipedia.org/wiki/Syst%C3%A8me_de_fichiers_distribu%C3%A9
+https://fr.wikipedia.org/wiki/Point_de_montage
+https://fr.wikipedia.org/wiki/Ext4
+https://fr.wikipedia.org/wiki/Ext2
+https://fr.wikipedia.org/wiki/Disque_virtuel
+https://fr.wikipedia.org/wiki/Instantan%C3%A9_(informatique)
+https://fr.wikipedia.org/wiki/Fstab
+https://fr.wikipedia.org/wiki/Fdisk
+https://fr.wikipedia.org/wiki/D%C3%A9fragmentation_(informatique)
+https://fr.wikipedia.org/wiki/XFS
