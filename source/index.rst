@@ -44,7 +44,7 @@ Système de fichier journalisé
 
 Le système de fichiers journalisé est un système de fichiers tolérant/résistant aux pannes qui permet d'assurer l'intégrité des données en cas de problème matériel, de panne de courant (ou débranchement à chaud) ou d'arrêt brutal du système. Cette fonctionnalité est assurée par la tenue d'un journal référençant les opérations d'écriture sur le support physique avant que ce dernier ne soit réellement mis à jour. Le système de fichiers doit permettre une reprise d'activité à la suite d'une coupure brutale, telle un arrêt électrique. Les métadonnées doivent alors rester cohérentes et à jour. La journalisation permet d'optimiser le contrôle d'intégrité du système de fichiers, réduisant ainsi le temps de redémarrage du système, critère important dans les environnements qui ont besoin d'une haute disponibilité.
 
-| La journalisation du système de fichier assure la cohérence des données en utilisant un journal. Ce journal est un fichier spécial qui enregistre les changements destinés au système de fichier, dans une mémoire circulaire. À intervalles réguliers, le journal est appliqué sur le système de fichier. Si une interruption électrique intervient, le journal peut être utilisé comme point de départ afin de récupérer les informations non sauvegardées, et ainsi assurer l'intégrité des données du système de fichier.
+| La journalisation du système de fichiers assure la cohérence des données en utilisant un journal. Ce journal est un fichier spécial qui enregistre les changements destinés au système de fichiers, dans une mémoire circulaire. À intervalles réguliers, le journal est appliqué sur le système de fichiers. Si une interruption électrique intervient, le journal peut être utilisé comme point de départ afin de récupérer les informations non sauvegardées, et ainsi assurer l'intégrité des données du système de fichiers.
 
 | Il y a 2 méthode de journalisation, celle avec des journaux physique et celle avec des journaux logique.
 
@@ -52,16 +52,15 @@ Le système de fichiers journalisé est un système de fichiers tolérant/résis
 
 | Journaux logique : Le journal logique ne stocke que les métadonnées, sacrifiant la tolérance aux pannes pour de meilleures performances. Il permet lui aussi le rejeu des opérations, mais peut lier des métadonnées journalisées à des données non journalisées, causant ainsi une corruption des données.
 
-| **Exemple de système de fichier journalisé :**
-Ext3, Ext4 ou encore BTRFS sont des système de fichier journalisé.
+| **Exemple de système de fichiers journalisé :**
+Ext3, Ext4 ou encore BTRFS sont des systèmes de fichiers journalisé.
 
-| Ext3 :  est une extension de Ext2, auquel on a ajouté une fonction de journalisation. Il est donc  
-possible de convertir une partition ext2 en une partition ext3 de manière simple, la seule modification à ajouter étant le journal. Il n'est utilisable que sur les systèmes Linux.
-Avec ce système de fichier l’utilisateur à la possibilité de choisir parmi trois mode de journalisation qui sont le mode Journal(correspond à la journalisation physique), mode Writeback, mode Ordered(mode par défaut). 
+| Ext3 : est une extension de Ext2, auquel on a ajouté une fonction de journalisation. Il est donc possible de convertir une partition ext2 en une partition ext3 de manière simple, la seule modification à ajouter étant le journal. Il n'est utilisable que sur les systèmes Linux.
+Avec ce système de fichiers l’utilisateur à la possibilité de choisir parmi trois mode de journalisation qui sont le mode Journal(correspond à la journalisation physique), mode Writeback, mode Ordered(mode par défaut). 
 
-| Ext4 est son successeur, il permet la sauvegarde de fichier plus volumineux et est plus fiable grace à l'utilisation du checksum à chaque ecriture dans le journal et est plus performant sur les fichier volumineux.
+| Ext4 est son successeur, il permet la sauvegarde de fichiers plus volumineux et est plus fiable grace à l'utilisation du checksum à chaque ecriture dans le journal et est plus performant sur les fichiers volumineux.
 
-| BTRFS est un système de fichiers des années 2010 fondé sur le Copy-On-Write (copie sur écriture) sous licence GNU GPL, développé conjointement par Oracle, Red Hat, Fujitsu, Intel, SUSE, STRATO AG (en) et autres. En 2012, alors qu'il n'était pas encore considéré comme tout-à-fait stable7, un effort intense de développement et de test est fourni par la communauté afin de faire de Btrfs le successeur de ext4 et ext3, systèmes de fichiers habituels des distributions Linux. OpenSuse 13.2 propose dès son lancement Btrfs par défaut pour la partition racine afin d'assurer la sécurité et laisse le choix entre ext4 et XFS.
+| BTRFS est un système de fichiers des années 2010 fondé sur le Copy-On-Write (copie sur écriture) sous licence GNU GPL, développé conjointement par Oracle, Red Hat, Fujitsu, Intel, SUSE, STRATO AG (en) et autres. En 2012, alors qu'il n'était pas encore considéré comme tout-à-fait stable, un effort intense de développement et de test est fourni par la communauté afin de faire de Btrfs le successeur de ext4 et ext3, systèmes de fichiers habituels des distributions Linux. OpenSuse 13.2 propose dès son lancement Btrfs par défaut pour la partition racine afin d'assurer la sécurité et laisse le choix entre ext4 et XFS.
 
 | Btrfs offre les fonctionnalités suivantes absentes d'autres systèmes de fichiers :
 * Instantané (snapshots), 
@@ -70,17 +69,17 @@ Ces caractéristiques sont importantes pour les systèmes Linux, serveurs comme 
 La technique de l'instantané, en particulier, garantit de pouvoir faire une sauvegarde cohérente des fichiers du système tels qu'ils étaient au moment précis de l'instantané, même si la sauvegarde dure plusieurs heures et que de nombreux fichiers sont modifiés entre temps.
 
 
-Système de fichier non journalisé
+Système de fichiers non journalisé
 ---------------------------------
 
-Vous l’aurez compris un système de fichier non journalisé est un systeme de fichier moin tolérent au panne. Suite à un incident il existe 2 procédé :
+Vous l’aurez compris un système de fichiers non journalisé est un systeme de fichiers moins tolérant au panne. Suite à un incident il existe 2 procédés :
 
 * Procédé des mises à jour prudentes qui, à un instant précis, rend le système de fichiers cohérent.
 * Procédé des programmes "éboueurs".
 
 | Le premier procédé consiste, à un instant précis, à ne pas laisser le système de fichiers incohérent. Ce procédé est très problématique car ne pas passer par une étape laissant le système dans une position incohérente est difficile. Par exemple, lorsqu'on crée un fichier, il faut ajouter ce fichier dans le répertoire et créer l'inode de ce répertoire. Ces opérations ne sont pas possibles simultanément et donc il se passe toujours un instant où l'inode est affecté au fichier mais pas au répertoire, ou l'inverse.
 
-| Le deuxième procédé est celui employé par le système de fichier ext2. Il utilise l'utilitaire fsck pour vérifier l'intégrité et réparer les données. L'utilitaire est lancé au démarrage si le système détecte un problème sur le système de fichiers. À la suite de cela, l'utilitaire vérifie l'intégralité du disque. L'inconvénient majeur de cette méthode est le temps d’exécution qui est proportionnel à la taille du support. Pour procéder à la vérification, le déroulement de l'utilitaire fsck se décompose en 6 phases :
+| Le deuxième procédé est celui employé par le système de fichiers ext2. Il utilise l'utilitaire fsck pour vérifier l'intégrité et réparer les données. L'utilitaire est lancé au démarrage si le système détecte un problème sur le système de fichiers. À la suite de cela, l'utilitaire vérifie l'intégralité du disque. L'inconvénient majeur de cette méthode est le temps d’exécution qui est proportionnel à la taille du support. Pour procéder à la vérification, le déroulement de l'utilitaire fsck se décompose en 6 phases :
 
 * Passe 1 : vérification des i-nœuds, des blocs et des tailles 
 * Passe 2 : vérification de la structure des répertoires 
@@ -93,7 +92,7 @@ Vous l’aurez compris un système de fichier non journalisé est un systeme de 
 
 | Il était donc intéressant de pouvoir mélanger les deux procédés pour avoir une méthode de récupération beaucoup plus rapide.
 
-| **Exemple de système de fichier non journalisé :**
+| **Exemple de système de fichiers non journalisé :**
 
 | Ext2 : Les fonctionnalités standard permettent d'accéder à des partitions de 4 téraoctets (1 téraoctets = 1 024 gigaoctets), alors que la version ext1 ne permettait que des partitions de 2 gigaoctets (1 gigaoctets = 1 024 mégaoctets). La taille maximale des fichiers avec un système ext2 standard est de 2 gigaoctets. De plus, lors de la création du système de fichiers, le système réserve une certaine quantité d'espace pour le super-utilisateur (root), en général 5 %. Ceci permet au super-utilisateur de pouvoir se connecter sur le système et de faire des tâches administratives quand le système de fichiers est plein pour les utilisateurs. Ext2Fs gère aussi les noms de fichiers longs (255 caractères) et prend en compte tous les caractères excepté "NUL" et "/".
 
@@ -108,10 +107,10 @@ Vous l’aurez compris un système de fichier non journalisé est un systeme de 
 | Il reste également l'aspect de la confidentialité des données des utilisateurs sur le système de fichiers. Il faudrait qu'une personne ayant un accès physique sur le média ne soit pas capable de pouvoir reconstituer l'ensemble des données présentes sur ce dernier. 
 
 
-Système de fichier en réseau et distribué
+Système de fichiers en réseau et distribué
 -----------------------------------------
 
-| Un système de fichier distribué est un système de fichier réparti sur plusieurs ordinateurs de manière à ce que les clients de cet espace de stockage ne le voit que comme un seul et énorme disque dur.
+| Un système de fichiers distribué est un système de fichiers réparti sur plusieurs ordinateurs de manière à ce que les clients de cet espace de stockage ne le voit que comme un seul et énorme disque dur.
  
 | Le Network File System est une technologie permettant d'accéder aux fichiers présents sur des machines distantes exactement comme s'ils sont locaux.
 
@@ -230,7 +229,7 @@ Le fichier fstab (file systems table) est la table des différents systèmes de 
 | <dir> - indique à la commande de montage où monter le <file system>. 
 | <type> - définit le type de système de fichiers pour monter le support ou la partition. Un grand nombre de systèmes de fichiers sont supportés, par exemple : ext2, ext3, ext4, reiserfs, xfs, jfs, smbfs, iso9660, vfat, ntfs, swap, and auto. Le type 'auto' laisse la commande de montage deviner quel type de système de fichiers utilisés.
 | <options> - définit des options particulières pour les systèmes de fichier. Certaines options sont pour le système de fichiers lui même.(auto,exec,ro,rw...)
-| <dump> - est utilisé par l'utilitaire dump pour décider quand faire des sauvegardes. Quand il est installé, dump vérifie le chiffre inscrit et décide si le système de fichiers doit être sauvegardé. Les valeurs possibles sont 0 et 1. Si 0, dump va ignorer le système de fichier, si 1, dump fera une sauvegarde. 
+| <dump> - est utilisé par l'utilitaire dump pour décider quand faire des sauvegardes. Quand il est installé, dump vérifie le chiffre inscrit et décide si le système de fichiers doit être sauvegardé. Les valeurs possibles sont 0 et 1. Si 0, dump va ignorer le système de fichiers, si 1, dump fera une sauvegarde. 
 | <pass> fsck lit le chiffre <pass> et détermine dans quel ordre les systèmes de fichiers vont être vérifiés. Le champ peut prendre les valeurs 0,1 et 2. Le système de fichiers root devra avoir la priorité la plus haute : 1, tout les autres systèmes que vous voulez vérifier devront avoir un 2. Les systèmes de fichiers avec un <pass> à 0 ne seront pas vérifier par l'utilitaire fsck. 
 
 
