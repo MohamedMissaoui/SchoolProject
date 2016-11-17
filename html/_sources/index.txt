@@ -7,7 +7,7 @@ Welcome to Partitionnement et systeme de fichiers's documentation!
 ==================================================================
 
 LICENCE
-=======
+-------
 
 | Il est permis de copier, distribuer et/ou modifier ce document en respect des termes de la « GNU Free Documentation License », Version 1.3 ou supérieure telle que publiée par la Free Software Foundation; avec la section "Licence" inaltérable, sans texte de couverture et sans texte de dernière page de couverture. Une copie de la licence est incluse à la section intitulée "GNU Free Documentation Licence" ou peut être obtenu depuis l’adresse suivante: http ://www.gnu.org/copyleft/fdl.html
 
@@ -110,14 +110,14 @@ Vous l’aurez compris un système de fichiers non journalisé est un systeme de
 Système de fichiers en réseau et distribué
 -----------------------------------------
 
-| Un système de fichiers distribué est un système de fichiers réparti sur plusieurs ordinateurs de manière à ce que les clients de cet espace de stockage ne le voit que comme un seul et énorme disque dur.
+| Un système de fichiers distribué est un système de fichiers réparti sur plusieurs ordinateurs de manière à ce que les clients de cet espace de stockage ne le voient que comme un unique et immense disque dur.
  
-| Le Network File System est une technologie permettant d'accéder aux fichiers présents sur des machines distantes exactement comme s'ils sont locaux.
+| Le Network File System est une technologie permettant d'accéder aux fichiers présents sur des machines distantes exactement de la même manière que s'ils étaient en local.
 
 | Sous les systèmes UNIX (y compris linux), il est considéré comme un système de fichiers à part entière.
 
 | Proposé par Sun Microsystem, le protocole NFS s'est imposé comme un standard dans le monde UNIX mais dépasse le simple cadre du monde UNIX.
-| En effet il s'appuie sur une représentation standard des objets proposée par le protocole XDR et le mécanisme d'appels de procédures distantes implémenté par le protocole RPC (Remote Procedure Call). Tous ces deux protocoles sont aussi l'oeuvre de Sun Microsystem.
+| En effet il s'appuie sur une représentation standard des objets proposés par le protocole XDR et le mécanisme d'appels de procédures distantes implémenté par le protocole RPC (Remote Procedure Call). Ces deux protocoles sont aussi l'oeuvre de Sun Microsystem.
 
 | En fait NFS est composé de quatre protocoles distincts qui reposent tous sur les RPC et donc sur le programme rpc.portmap. Un des rôles de ce programme est de convertir les numéros de programmes RPC en numéros de ports. Quand un serveur RPC démarre, il va préciser à portmap quel port il utilisera et les numéros de programmes RPC qu'il gère. Quand un client souhaite envoyer une requête RPC vers un numéro de programme donné, il contacte d'abord le serveur portmap pour obtenir le numéro de port sur lequel tourne le programme souhaité. Ensuite, il adresse les paquets RPC au port concerné.
 
@@ -131,7 +131,7 @@ Editer le fichier
 
 | ``nano /etc/exports``
 
-Disons que l'on veut partager le répertoire /home/test à la machine debian1.domaine.org
+Pour exemple, on désire partager le répertoire /home/test à la machine debian1.domaine.org
 
 | ``/home/test	debian1.domaine.org(rw,root_squash)``
 rw = read,write
@@ -163,13 +163,13 @@ Un disque dur virtuel fournit un espace de stockage pour une machine virtuelle. 
 Snapshot
 --------
 
-En informatique, un instantané est l'état d'un système à un instant donné. On utilise particulièrement cette notion dans le cadre des systèmes de fichiers, des bases de données ou des machines virtuelles. 
+En informatique, un instantané est l'état d'un système à un instant donné. On utilise tout particulièrement cette notion dans le cadre des systèmes de fichiers, des bases de données ou des machines virtuelles. 
 
 | Une sauvegarde complète d'une grande quantité de données peut être longue à exécuter. Par ailleurs, celle-ci nécessite généralement le verrouillage des données à sauvegarder pour empêcher que des données en cours de sauvegarde ne soient modifiées et ne produisent ainsi une sauvegarde qui ne soit pas représentative du système à un instant donné. Cela ne pose pas de problème particulier pour effectuer des sauvegardes sur des ordinateurs personnels ou des serveurs internes de petites entreprises, puisqu'il est parfaitement acceptable qu'un tel système puisse être indisponible durant un certain laps de temps. Cependant, sur des serveurs utilisés à grande échelle, exigeant de grands uptimes, on ne peut recourir à de telles méthodes.
 
 | Pour éviter cela, on peut créer un instantané. On réserve d'abord sur le périphérique cible un espace de taille suffisante pour contenir les données à sauvegarder. Les données à copier et l'instantané ainsi initialisé sont divisés en blocs de données, de taille fixe ou variable ; dans l'instantané, aucune donnée n'est encore présente, mais chaque bloc contient un pointeur vers le bloc correspondant sur le système d'origine. Lorsqu'un bloc des données à sauvegarder est modifié, les données d'origine de ce bloc sont copiées dans le bloc correspondant de l'instantané avant que les modifications ne soient écrites.
 
-| Cette méthode ne permet cependant pas de protéger les données contre une panne de disque dur par exemple, puisque seules les données qui auront été modifiées seront copiées dans l'instantané. Pour pallier cela, on commence parfois par copier la totalité du système à sauvegarder par la méthode traditionnelle, après quoi on peut créer des instantanés successifs dont les parties non modifiées pointeront non pas vers les données originales mais vers la première copie complète.
+| Cette méthode ne permet cependant pas de protéger les données contre une panne de disque dur par exemple, puisque seules les données qui auront été modifiées seront copiées dans l'instantané. Pour pallier à cela, on commence parfois par copier la totalité du système à sauvegarder par la méthode traditionnelle, après quoi l'on peut créer des instantanés successifs dont les parties non modifiées pointeront non pas vers les données originales mais vers la première copie complète.
 
 | **Les commandes :**
 
@@ -198,18 +198,18 @@ Swap
 Le swap est appelé en français espace ou partition d'échange. 
 | Linux divise la RAM (mémoire vive) physique en blocs de mémoire appelés pages. Le swapping est le procédé par lequel une page de mémoire est copiée vers un espace prédéfini sur le disque dur, appelé swap (espace d'échange), permettant de libérer cette page mémoire. Les tailles combinées de la mémoire physique et de l'espace d'échange correspondent à la quantité de mémoire virtuelle disponible. 
 
-| L'espace d'échange, aussi connu sous le nom de mémoire virtuelle, peut être présent sous forme de partition ou de fichier, et peut être créé ou supprimé à n'importe quel moment. L'espace d'échange est recommandé pour les machines ayant moins de 1 Go de mémoire vive (RAM), mais dépend surtout des préférences personnelles du propriétaire de l'ordinateur. La seule contrainte vient lors de l'activation de l'hibernation, nécessitant un fichier d'échange de taille supérieur ou égale à la taille de mémoire vive physiquement installée. 
+| L'espace d'échange, aussi connu sous le nom de mémoire virtuelle, peut être présent sous forme de partition ou de fichier, et peut être créer ou supprimer à n'importe quel moment. L'espace d'échange est recommandé pour les machines ayant moins de 1 Go de mémoire vive (RAM), mais dépend surtout des préférences personnelles du propriétaire de l'ordinateur. La seule contrainte vient lors de l'activation de l'hibernation, nécessitant un fichier d'échange de taille supérieur ou égale à la taille de mémoire vive physiquement installée. 
 
 Fragmentation
 -------------
 
 | Il n’y a pas vraiment de fragmentation sous linux étant donnée que les systèmes de fichiers sont fait de tel sorte à ne pas se fragmenter.
 
-| Les systèmes Ext2, Ext3, et Ext4 (systèmes de fichiers utilisés par la plupart des distributions Linux actuelles) organisent et répartissent les fichiers sur le disque dur de manière intelligente. Au lieu de placer les fichiers près les uns des autres sur le disque dur, ces systèmes de fichiers dispersent les fichiers sur tout le disque, laissant une grande quantité d'espace libre entre eux. Quand un fichier est modifié et que sa taille augmente, il y a généralement beaucoup d'espace libre pour enregistrer le fichier sur des secteurs contiguë. S'il y a fragmentation, le système de fichiers tentera de déplacer les fichiers afin de réduire la fragmentation en utilisation normale sans avoir besoin d'un utilitaire de défragmentation.
+| Les systèmes Ext2, Ext3, et Ext4 (systèmes de fichiers utilisés par la plupart des distributions Linux actuelles) organisent et répartissent les fichiers sur le disque dur de manière intelligente. Au lieu de placer les fichiers près les uns des autres sur le disque dur, ces systèmes de fichiers dispersent les fichiers sur tout le disque, laissant une grande quantité d'espace libre entre eux. Quand un fichier est modifié et que sa taille augmente, il y a généralement beaucoup d'espace libre pour enregistrer le fichier sur des secteurs contiguë. S'il y a fragmentation, le système de fichiers tentera de déplacer les fichiers afin de réduire la fragmentation sans avoir besoin d'un utilitaire de défragmentation.
 
-| En raison de la façon dont ces systèmes fonctionnent, il y aura fragmentation importante lorsque votre disque sur se remplit à une capacité de 95% (voire 80%). Cependant, le système de fichiers est conçu pour éviter la fragmentation en utilisation normale.
+| En raison de la façon dont ces systèmes fonctionnent, il y aura fragmentation importante lorsque votre disque sur se remplit à une capacité de 95% (voire 80%). Cependant, le système de fichiers en utilisation normale est conçu pour éviter la fragmentation.
 
-| Si vous avez des problèmes avec la fragmentation sous Linux, vous avez probablement besoin d'un plus gros disque dur. Si vous avez réellement besoin de défragmenter un système de fichiers Linux, la façon la plus simple et sans doute la plus fiable de faire est de copier tous les fichiers de la partition sur un autre média, effacer les fichiers de la partition, puis copier les fichiers à nouveau sur la partition. Le système de fichiers saura répartir les fichiers intelligemment sur le disque.
+| Si vous avez des problèmes avec la fragmentation sous Linux, vous avez probablement besoin d'un plus gros disque dur. Si vous avez réellement besoin de défragmenter un système de fichiers Linux, la façon la plus simple et sans doute la plus fiable est de copier tous les fichiers de la partition sur un autre média, effacer les fichiers de la partition, puis copier les fichiers à nouveau sur la partition. Le système de fichiers saura répartir les fichiers intelligemment sur le disque.
 
 | Vous pouvez vérifier la fragmentation de votre disque à l'aide de la commande ``fsck``.
 

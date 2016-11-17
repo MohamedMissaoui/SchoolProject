@@ -46,8 +46,10 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table des Matières</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to Partitionnement et systeme de fichiers&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#">Welcome to Partitionnement et systeme de fichiers&#8217;s documentation!</a><ul>
 <li><a class="reference internal" href="#licence">LICENCE</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#les-systemes-de-fichiers">LES SYSTEMES DE FICHIERS&nbsp;:</a><ul>
 <li><a class="reference internal" href="#qu-est-ce-qu-un-systeme-de-fichier">Qu&#8217;est ce qu&#8217;un système de fichier&nbsp;?</a></li>
 <li><a class="reference internal" href="#systeme-de-fichier-journalise">Système de fichier journalisé</a></li>
@@ -96,15 +98,15 @@
             
   <div class="section" id="welcome-to-partitionnement-et-systeme-de-fichiers-s-documentation">
 <h1>Welcome to Partitionnement et systeme de fichiers&#8217;s documentation!<a class="headerlink" href="#welcome-to-partitionnement-et-systeme-de-fichiers-s-documentation" title="Lien permanent vers ce titre">¶</a></h1>
-</div>
 <div class="section" id="licence">
-<h1>LICENCE<a class="headerlink" href="#licence" title="Lien permanent vers ce titre">¶</a></h1>
+<h2>LICENCE<a class="headerlink" href="#licence" title="Lien permanent vers ce titre">¶</a></h2>
 <div class="line-block">
 <div class="line">Il est permis de copier, distribuer et/ou modifier ce document en respect des termes de la « GNU Free Documentation License », Version 1.3 ou supérieure telle que publiée par la Free Software Foundation; avec la section &#8220;Licence&#8221; inaltérable, sans texte de couverture et sans texte de dernière page de couverture. Une copie de la licence est incluse à la section intitulée &#8220;GNU Free Documentation Licence&#8221; ou peut être obtenu depuis l’adresse suivante: http ://www.gnu.org/copyleft/fdl.html</div>
 </div>
 <div class="toctree-wrapper compound">
 <ul class="simple">
 </ul>
+</div>
 </div>
 </div>
 <div class="section" id="les-systemes-de-fichiers">
@@ -211,17 +213,17 @@ La technique de l&#8217;instantané, en particulier, garantit de pouvoir faire u
 <div class="section" id="systeme-de-fichiers-en-reseau-et-distribue">
 <h2>Système de fichiers en réseau et distribué<a class="headerlink" href="#systeme-de-fichiers-en-reseau-et-distribue" title="Lien permanent vers ce titre">¶</a></h2>
 <div class="line-block">
-<div class="line">Un système de fichiers distribué est un système de fichiers réparti sur plusieurs ordinateurs de manière à ce que les clients de cet espace de stockage ne le voit que comme un seul et énorme disque dur.</div>
+<div class="line">Un système de fichiers distribué est un système de fichiers réparti sur plusieurs ordinateurs de manière à ce que les clients de cet espace de stockage ne le voient que comme un unique et immense disque dur.</div>
 </div>
 <div class="line-block">
-<div class="line">Le Network File System est une technologie permettant d&#8217;accéder aux fichiers présents sur des machines distantes exactement comme s&#8217;ils sont locaux.</div>
+<div class="line">Le Network File System est une technologie permettant d&#8217;accéder aux fichiers présents sur des machines distantes exactement de la même manière que s&#8217;ils étaient en local.</div>
 </div>
 <div class="line-block">
 <div class="line">Sous les systèmes UNIX (y compris linux), il est considéré comme un système de fichiers à part entière.</div>
 </div>
 <div class="line-block">
 <div class="line">Proposé par Sun Microsystem, le protocole NFS s&#8217;est imposé comme un standard dans le monde UNIX mais dépasse le simple cadre du monde UNIX.</div>
-<div class="line">En effet il s&#8217;appuie sur une représentation standard des objets proposée par le protocole XDR et le mécanisme d&#8217;appels de procédures distantes implémenté par le protocole RPC (Remote Procedure Call). Tous ces deux protocoles sont aussi l&#8217;oeuvre de Sun Microsystem.</div>
+<div class="line">En effet il s&#8217;appuie sur une représentation standard des objets proposés par le protocole XDR et le mécanisme d&#8217;appels de procédures distantes implémenté par le protocole RPC (Remote Procedure Call). Ces deux protocoles sont aussi l&#8217;oeuvre de Sun Microsystem.</div>
 </div>
 <div class="line-block">
 <div class="line">En fait NFS est composé de quatre protocoles distincts qui reposent tous sur les RPC et donc sur le programme rpc.portmap. Un des rôles de ce programme est de convertir les numéros de programmes RPC en numéros de ports. Quand un serveur RPC démarre, il va préciser à portmap quel port il utilisera et les numéros de programmes RPC qu&#8217;il gère. Quand un client souhaite envoyer une requête RPC vers un numéro de programme donné, il contacte d&#8217;abord le serveur portmap pour obtenir le numéro de port sur lequel tourne le programme souhaité. Ensuite, il adresse les paquets RPC au port concerné.</div>
@@ -239,7 +241,7 @@ La technique de l&#8217;instantané, en particulier, garantit de pouvoir faire u
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">nano</span> <span class="pre">/etc/exports</span></code></div>
 </div>
-<p>Disons que l&#8217;on veut partager le répertoire /home/test à la machine debian1.domaine.org</p>
+<p>Pour exemple, on désire partager le répertoire /home/test à la machine debian1.domaine.org</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal"><span class="pre">/home/test</span>&nbsp; <span class="pre">debian1.domaine.org(rw,root_squash)</span></code></div>
 </div>
@@ -271,7 +273,7 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 </div>
 <div class="section" id="snapshot">
 <h2>Snapshot<a class="headerlink" href="#snapshot" title="Lien permanent vers ce titre">¶</a></h2>
-<p>En informatique, un instantané est l&#8217;état d&#8217;un système à un instant donné. On utilise particulièrement cette notion dans le cadre des systèmes de fichiers, des bases de données ou des machines virtuelles.</p>
+<p>En informatique, un instantané est l&#8217;état d&#8217;un système à un instant donné. On utilise tout particulièrement cette notion dans le cadre des systèmes de fichiers, des bases de données ou des machines virtuelles.</p>
 <div class="line-block">
 <div class="line">Une sauvegarde complète d&#8217;une grande quantité de données peut être longue à exécuter. Par ailleurs, celle-ci nécessite généralement le verrouillage des données à sauvegarder pour empêcher que des données en cours de sauvegarde ne soient modifiées et ne produisent ainsi une sauvegarde qui ne soit pas représentative du système à un instant donné. Cela ne pose pas de problème particulier pour effectuer des sauvegardes sur des ordinateurs personnels ou des serveurs internes de petites entreprises, puisqu&#8217;il est parfaitement acceptable qu&#8217;un tel système puisse être indisponible durant un certain laps de temps. Cependant, sur des serveurs utilisés à grande échelle, exigeant de grands uptimes, on ne peut recourir à de telles méthodes.</div>
 </div>
@@ -279,7 +281,7 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 <div class="line">Pour éviter cela, on peut créer un instantané. On réserve d&#8217;abord sur le périphérique cible un espace de taille suffisante pour contenir les données à sauvegarder. Les données à copier et l&#8217;instantané ainsi initialisé sont divisés en blocs de données, de taille fixe ou variable&nbsp;; dans l&#8217;instantané, aucune donnée n&#8217;est encore présente, mais chaque bloc contient un pointeur vers le bloc correspondant sur le système d&#8217;origine. Lorsqu&#8217;un bloc des données à sauvegarder est modifié, les données d&#8217;origine de ce bloc sont copiées dans le bloc correspondant de l&#8217;instantané avant que les modifications ne soient écrites.</div>
 </div>
 <div class="line-block">
-<div class="line">Cette méthode ne permet cependant pas de protéger les données contre une panne de disque dur par exemple, puisque seules les données qui auront été modifiées seront copiées dans l&#8217;instantané. Pour pallier cela, on commence parfois par copier la totalité du système à sauvegarder par la méthode traditionnelle, après quoi on peut créer des instantanés successifs dont les parties non modifiées pointeront non pas vers les données originales mais vers la première copie complète.</div>
+<div class="line">Cette méthode ne permet cependant pas de protéger les données contre une panne de disque dur par exemple, puisque seules les données qui auront été modifiées seront copiées dans l&#8217;instantané. Pour pallier à cela, on commence parfois par copier la totalité du système à sauvegarder par la méthode traditionnelle, après quoi l&#8217;on peut créer des instantanés successifs dont les parties non modifiées pointeront non pas vers les données originales mais vers la première copie complète.</div>
 </div>
 <div class="line-block">
 <div class="line"><strong>Les commandes :</strong></div>
@@ -306,7 +308,7 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 <p>Le swap est appelé en français espace ou partition d&#8217;échange.
 | Linux divise la RAM (mémoire vive) physique en blocs de mémoire appelés pages. Le swapping est le procédé par lequel une page de mémoire est copiée vers un espace prédéfini sur le disque dur, appelé swap (espace d&#8217;échange), permettant de libérer cette page mémoire. Les tailles combinées de la mémoire physique et de l&#8217;espace d&#8217;échange correspondent à la quantité de mémoire virtuelle disponible.</p>
 <div class="line-block">
-<div class="line">L&#8217;espace d&#8217;échange, aussi connu sous le nom de mémoire virtuelle, peut être présent sous forme de partition ou de fichier, et peut être créé ou supprimé à n&#8217;importe quel moment. L&#8217;espace d&#8217;échange est recommandé pour les machines ayant moins de 1 Go de mémoire vive (RAM), mais dépend surtout des préférences personnelles du propriétaire de l&#8217;ordinateur. La seule contrainte vient lors de l&#8217;activation de l&#8217;hibernation, nécessitant un fichier d&#8217;échange de taille supérieur ou égale à la taille de mémoire vive physiquement installée.</div>
+<div class="line">L&#8217;espace d&#8217;échange, aussi connu sous le nom de mémoire virtuelle, peut être présent sous forme de partition ou de fichier, et peut être créer ou supprimer à n&#8217;importe quel moment. L&#8217;espace d&#8217;échange est recommandé pour les machines ayant moins de 1 Go de mémoire vive (RAM), mais dépend surtout des préférences personnelles du propriétaire de l&#8217;ordinateur. La seule contrainte vient lors de l&#8217;activation de l&#8217;hibernation, nécessitant un fichier d&#8217;échange de taille supérieur ou égale à la taille de mémoire vive physiquement installée.</div>
 </div>
 </div>
 <div class="section" id="fragmentation">
@@ -315,13 +317,13 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 <div class="line">Il n’y a pas vraiment de fragmentation sous linux étant donnée que les systèmes de fichiers sont fait de tel sorte à ne pas se fragmenter.</div>
 </div>
 <div class="line-block">
-<div class="line">Les systèmes Ext2, Ext3, et Ext4 (systèmes de fichiers utilisés par la plupart des distributions Linux actuelles) organisent et répartissent les fichiers sur le disque dur de manière intelligente. Au lieu de placer les fichiers près les uns des autres sur le disque dur, ces systèmes de fichiers dispersent les fichiers sur tout le disque, laissant une grande quantité d&#8217;espace libre entre eux. Quand un fichier est modifié et que sa taille augmente, il y a généralement beaucoup d&#8217;espace libre pour enregistrer le fichier sur des secteurs contiguë. S&#8217;il y a fragmentation, le système de fichiers tentera de déplacer les fichiers afin de réduire la fragmentation en utilisation normale sans avoir besoin d&#8217;un utilitaire de défragmentation.</div>
+<div class="line">Les systèmes Ext2, Ext3, et Ext4 (systèmes de fichiers utilisés par la plupart des distributions Linux actuelles) organisent et répartissent les fichiers sur le disque dur de manière intelligente. Au lieu de placer les fichiers près les uns des autres sur le disque dur, ces systèmes de fichiers dispersent les fichiers sur tout le disque, laissant une grande quantité d&#8217;espace libre entre eux. Quand un fichier est modifié et que sa taille augmente, il y a généralement beaucoup d&#8217;espace libre pour enregistrer le fichier sur des secteurs contiguë. S&#8217;il y a fragmentation, le système de fichiers tentera de déplacer les fichiers afin de réduire la fragmentation sans avoir besoin d&#8217;un utilitaire de défragmentation.</div>
 </div>
 <div class="line-block">
-<div class="line">En raison de la façon dont ces systèmes fonctionnent, il y aura fragmentation importante lorsque votre disque sur se remplit à une capacité de 95% (voire 80%). Cependant, le système de fichiers est conçu pour éviter la fragmentation en utilisation normale.</div>
+<div class="line">En raison de la façon dont ces systèmes fonctionnent, il y aura fragmentation importante lorsque votre disque sur se remplit à une capacité de 95% (voire 80%). Cependant, le système de fichiers en utilisation normale est conçu pour éviter la fragmentation.</div>
 </div>
 <div class="line-block">
-<div class="line">Si vous avez des problèmes avec la fragmentation sous Linux, vous avez probablement besoin d&#8217;un plus gros disque dur. Si vous avez réellement besoin de défragmenter un système de fichiers Linux, la façon la plus simple et sans doute la plus fiable de faire est de copier tous les fichiers de la partition sur un autre média, effacer les fichiers de la partition, puis copier les fichiers à nouveau sur la partition. Le système de fichiers saura répartir les fichiers intelligemment sur le disque.</div>
+<div class="line">Si vous avez des problèmes avec la fragmentation sous Linux, vous avez probablement besoin d&#8217;un plus gros disque dur. Si vous avez réellement besoin de défragmenter un système de fichiers Linux, la façon la plus simple et sans doute la plus fiable est de copier tous les fichiers de la partition sur un autre média, effacer les fichiers de la partition, puis copier les fichiers à nouveau sur la partition. Le système de fichiers saura répartir les fichiers intelligemment sur le disque.</div>
 </div>
 <div class="line-block">
 <div class="line">Vous pouvez vérifier la fragmentation de votre disque à l&#8217;aide de la commande <code class="docutils literal"><span class="pre">fsck</span></code>.</div>
