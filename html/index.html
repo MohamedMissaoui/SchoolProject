@@ -47,11 +47,12 @@
   <h3><a href="#">Table des Matières</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Welcome to Partitionnement et systeme de fichiers&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#licence">LICENCE</a></li>
 <li><a class="reference internal" href="#les-systemes-de-fichiers">LES SYSTEMES DE FICHIERS&nbsp;:</a><ul>
-<li><a class="reference internal" href="#quesquun-systeme-de-fichier">Quesqu’un système de fichier&nbsp;?</a></li>
+<li><a class="reference internal" href="#qu-est-ce-qu-un-systeme-de-fichier">Qu&#8217;est ce qu&#8217;un système de fichier&nbsp;?</a></li>
 <li><a class="reference internal" href="#systeme-de-fichier-journalise">Système de fichier journalisé</a></li>
 <li><a class="reference internal" href="#systeme-de-fichier-non-journalise">Système de fichier non journalisé</a></li>
-<li><a class="reference internal" href="#systeme-de-fichier-distribue-et-en-reseau">Système de fichier distribué et en réseau</a></li>
+<li><a class="reference internal" href="#systeme-de-fichier-en-reseau-et-distribue">Système de fichier en réseau et distribué</a></li>
 <li><a class="reference internal" href="#disque-virtuel">Disque virtuel</a></li>
 <li><a class="reference internal" href="#snapshot">Snapshot</a></li>
 <li><a class="reference internal" href="#swap">Swap</a></li>
@@ -95,11 +96,12 @@
             
   <div class="section" id="welcome-to-partitionnement-et-systeme-de-fichiers-s-documentation">
 <h1>Welcome to Partitionnement et systeme de fichiers&#8217;s documentation!<a class="headerlink" href="#welcome-to-partitionnement-et-systeme-de-fichiers-s-documentation" title="Lien permanent vers ce titre">¶</a></h1>
-<p>Il est permis de copier, distribuer et/ou modifier ce document en respect des termes de la « GNU Free
-Documentation License », Version 1.3 ou supérieure telle que publiée par la Free Software Foundation;
-avec la section &#8220;Licence&#8221; inaltérable, sans texte de couverture et sans texte de dernière page de
-couverture. Une copie de la licence est incluse à la section intitulée &#8220;GNU Free Documentation Licence&#8221; ou
-peut être obtenu depuis l’adresse suivante: http ://www.gnu.org/copyleft/fdl.html</p>
+</div>
+<div class="section" id="licence">
+<h1>LICENCE<a class="headerlink" href="#licence" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="line-block">
+<div class="line">Il est permis de copier, distribuer et/ou modifier ce document en respect des termes de la « GNU Free Documentation License », Version 1.3 ou supérieure telle que publiée par la Free Software Foundation; avec la section &#8220;Licence&#8221; inaltérable, sans texte de couverture et sans texte de dernière page de couverture. Une copie de la licence est incluse à la section intitulée &#8220;GNU Free Documentation Licence&#8221; ou peut être obtenu depuis l’adresse suivante: http ://www.gnu.org/copyleft/fdl.html</div>
+</div>
 <div class="toctree-wrapper compound">
 <ul class="simple">
 </ul>
@@ -107,8 +109,8 @@ peut être obtenu depuis l’adresse suivante: http ://www.gnu.org/copyleft/fdl.
 </div>
 <div class="section" id="les-systemes-de-fichiers">
 <h1>LES SYSTEMES DE FICHIERS&nbsp;:<a class="headerlink" href="#les-systemes-de-fichiers" title="Lien permanent vers ce titre">¶</a></h1>
-<div class="section" id="quesquun-systeme-de-fichier">
-<h2>Quesqu’un système de fichier&nbsp;?<a class="headerlink" href="#quesquun-systeme-de-fichier" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="qu-est-ce-qu-un-systeme-de-fichier">
+<h2>Qu&#8217;est ce qu&#8217;un système de fichier&nbsp;?<a class="headerlink" href="#qu-est-ce-qu-un-systeme-de-fichier" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Dans le cœur d&#8217;un ordinateur, tout est constitué de 1 et de 0, mais l&#8217;organisation de ces données n&#8217;est pas aussi simple. Un bit est un 1 ou un 0 ; un octet (byte en anglais) est composé de huit bits ; un kilo-octet binaire(kibibyte) est un groupe de 1024 octets ; un méga-octet binaire(mebibyte) se constitue de 1024 kilo-octets binaires ; et ainsi se poursuit la chaîne.</p>
 <div class="line-block">
 <div class="line">Un disque dur (hard drive ou hard disk) stocke toutes vos données : à chaque fois que vous enregistrez un fichier, vous écrivez des milliers de 1 et de 0 sur un disque métallique, le piquant littéralement et créant une indentation qui pourra plus tard être relue en tant que 1 ou 0 par votre ordinateur. En réalité, vous magnétisez des milliers de petits bâtons (que nous appellerons clusters) qui seront polarisés dans un sens ou dans un autre (N-S ou S-N) ; cette polarisation différente sera ré-interprétée plus tard par l&#8217;ordinateur en tant que 1 ou 0.</div>
@@ -207,10 +209,13 @@ La technique de l&#8217;instantané, en particulier, garantit de pouvoir faire u
 <div class="line">Il reste également l&#8217;aspect de la confidentialité des données des utilisateurs sur le système de fichiers. Il faudrait qu&#8217;une personne ayant un accès physique sur le média ne soit pas capable de pouvoir reconstituer l&#8217;ensemble des données présentes sur ce dernier.</div>
 </div>
 </div>
-<div class="section" id="systeme-de-fichier-distribue-et-en-reseau">
-<h2>Système de fichier distribué et en réseau<a class="headerlink" href="#systeme-de-fichier-distribue-et-en-reseau" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="systeme-de-fichier-en-reseau-et-distribue">
+<h2>Système de fichier en réseau et distribué<a class="headerlink" href="#systeme-de-fichier-en-reseau-et-distribue" title="Lien permanent vers ce titre">¶</a></h2>
 <div class="line-block">
-<div class="line">Le Network File System est une technologie (un mécanisme ou un protocole pour faire simple) permettant d&#8217;accéder aux fichiers présents sur des machines distantes exactement comme s&#8217;ils sont locaux.</div>
+<div class="line">Un système de fichier distribué est un système de fichier réparti sur plusieurs ordinateurs de manière à ce que les clients de cet espace de stockage ne le voit que comme un seul et énorme disque dur.</div>
+</div>
+<div class="line-block">
+<div class="line">Le Network File System est une technologie permettant d&#8217;accéder aux fichiers présents sur des machines distantes exactement comme s&#8217;ils sont locaux.</div>
 </div>
 <div class="line-block">
 <div class="line">Sous les systèmes UNIX (y compris linux), il est considéré comme un système de fichiers à part entière.</div>
@@ -249,7 +254,7 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 </div>
 <p>Pour monter le répertoire /home/test2/ partagé par la machine dont le nom DNS est debian2.domaine.org dans le répertoire /mnt/test déjà créé, utilisez la commande mount :</p>
 <div class="line-block">
-<div class="line"><code class="docutils literal"><span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">nfs</span> <span class="pre">debian2.domaine.org:/home/test2</span> <span class="pre">mnt/test</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">nfs</span> <span class="pre">debian2.domaine.org:/home/test</span> <span class="pre">/mnt/test</span></code></div>
 </div>
 <p>umount de /mnt/test une fois que vous n&#8217;avez plus besoin du partage.</p>
 </div>
@@ -387,7 +392,7 @@ root_squash = le root de la machine debian1 n&#8217;aura pas les droit root sur 
 <div class="line">Par exemple, la commande ci-dessous permet de lire un CD-ROM en montant le périphérique /dev/cdrom  sur /media/cdrom en indiquant que le système de fichiers est ISO 9660.</div>
 </div>
 <div class="line-block">
-<div class="line"><code class="docutils literal"><span class="pre">#</span> <span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">iso9660</span> <span class="pre">-o</span> <span class="pre">loop/dev/cdrom</span> <span class="pre">/mnt/cdrom</span></code></div>
+<div class="line"><code class="docutils literal"><span class="pre">mount</span> <span class="pre">-t</span> <span class="pre">iso9660</span> <span class="pre">-o</span> <span class="pre">loop/dev/cdrom</span> <span class="pre">/mnt/cdrom</span></code></div>
 </div>
 <div class="line-block">
 <div class="line">L&#8217;option bind permet de lier un répertoire à un autre.</div>

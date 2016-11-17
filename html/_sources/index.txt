@@ -6,11 +6,10 @@
 Welcome to Partitionnement et systeme de fichiers's documentation!
 ==================================================================
 
-Il est permis de copier, distribuer et/ou modifier ce document en respect des termes de la « GNU Free
-Documentation License », Version 1.3 ou supérieure telle que publiée par la Free Software Foundation;
-avec la section "Licence" inaltérable, sans texte de couverture et sans texte de dernière page de
-couverture. Une copie de la licence est incluse à la section intitulée "GNU Free Documentation Licence" ou
-peut être obtenu depuis l’adresse suivante: http ://www.gnu.org/copyleft/fdl.html
+LICENCE
+=======
+
+| Il est permis de copier, distribuer et/ou modifier ce document en respect des termes de la « GNU Free Documentation License », Version 1.3 ou supérieure telle que publiée par la Free Software Foundation; avec la section "Licence" inaltérable, sans texte de couverture et sans texte de dernière page de couverture. Une copie de la licence est incluse à la section intitulée "GNU Free Documentation Licence" ou peut être obtenu depuis l’adresse suivante: http ://www.gnu.org/copyleft/fdl.html
 
 .. Contents:
 
@@ -29,8 +28,8 @@ peut être obtenu depuis l’adresse suivante: http ://www.gnu.org/copyleft/fdl.
 LES SYSTEMES DE FICHIERS :
 ==========================
 
-Quesqu’un système de fichier ?
-------------------------------
+Qu'est ce qu'un système de fichier ?
+------------------------------------
 
 Dans le cœur d'un ordinateur, tout est constitué de 1 et de 0, mais l'organisation de ces données n'est pas aussi simple. Un bit est un 1 ou un 0 ; un octet (byte en anglais) est composé de huit bits ; un kilo-octet binaire(kibibyte) est un groupe de 1024 octets ; un méga-octet binaire(mebibyte) se constitue de 1024 kilo-octets binaires ; et ainsi se poursuit la chaîne.
  
@@ -108,10 +107,13 @@ Vous l’aurez compris un système de fichier non journalisé est un systeme de 
 
 | Il reste également l'aspect de la confidentialité des données des utilisateurs sur le système de fichiers. Il faudrait qu'une personne ayant un accès physique sur le média ne soit pas capable de pouvoir reconstituer l'ensemble des données présentes sur ce dernier. 
 
-Système de fichier distribué et en réseau
+
+Système de fichier en réseau et distribué
 -----------------------------------------
 
-| Le Network File System est une technologie (un mécanisme ou un protocole pour faire simple) permettant d'accéder aux fichiers présents sur des machines distantes exactement comme s'ils sont locaux.
+| Un système de fichier distribué est un système de fichier réparti sur plusieurs ordinateurs de manière à ce que les clients de cet espace de stockage ne le voit que comme un seul et énorme disque dur.
+ 
+| Le Network File System est une technologie permettant d'accéder aux fichiers présents sur des machines distantes exactement comme s'ils sont locaux.
 
 | Sous les systèmes UNIX (y compris linux), il est considéré comme un système de fichiers à part entière.
 
@@ -142,7 +144,7 @@ root_squash = le root de la machine debian1 n'aura pas les droit root sur /home/
 
 Pour monter le répertoire /home/test2/ partagé par la machine dont le nom DNS est debian2.domaine.org dans le répertoire /mnt/test déjà créé, utilisez la commande mount :
 
-| ``mount -t nfs debian2.domaine.org:/home/test2 mnt/test``
+| ``mount -t nfs debian2.domaine.org:/home/test /mnt/test``
 
 umount de /mnt/test une fois que vous n'avez plus besoin du partage.
 
@@ -264,7 +266,7 @@ Les Commandes
 
 | Par exemple, la commande ci-dessous permet de lire un CD-ROM en montant le périphérique /dev/cdrom  sur /media/cdrom en indiquant que le système de fichiers est ISO 9660.
 
-| ``# mount -t iso9660 -o loop/dev/cdrom /mnt/cdrom``
+| ``mount -t iso9660 -o loop/dev/cdrom /mnt/cdrom``
 
 | L'option bind permet de lier un répertoire à un autre.
 
