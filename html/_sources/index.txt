@@ -60,7 +60,7 @@ Avec ce système de fichiers l’utilisateur à la possibilité de choisir parmi
 
 | Ext4 est son successeur, il permet la sauvegarde de fichiers plus volumineux et est plus fiable grace à l'utilisation du checksum à chaque ecriture dans le journal et est plus performant sur les fichiers volumineux.
 
-| BTRFS est un système de fichiers des années 2010 fondé sur le Copy-On-Write (copie sur écriture) sous licence GNU GPL, développé conjointement par Oracle, Red Hat, Fujitsu, Intel, SUSE, STRATO AG (en) et autres. En 2012, alors qu'il n'était pas encore considéré comme tout-à-fait stable7, un effort intense de développement et de test est fourni par la communauté afin de faire de Btrfs le successeur de ext4 et ext3, systèmes de fichiers habituels des distributions Linux. OpenSuse 13.2 propose dès son lancement Btrfs par défaut pour la partition racine afin d'assurer la sécurité et laisse le choix entre ext4 et XFS.
+| BTRFS est un système de fichiers des années 2010 fondé sur le Copy-On-Write (copie sur écriture) sous licence GNU GPL, développé conjointement par Oracle, Red Hat, Fujitsu, Intel, SUSE, STRATO AG (en) et autres. En 2012, alors qu'il n'était pas encore considéré comme tout-à-fait stable, un effort intense de développement et de test est fourni par la communauté afin de faire de Btrfs le successeur de ext4 et ext3, systèmes de fichiers habituels des distributions Linux. OpenSuse 13.2 propose dès son lancement Btrfs par défaut pour la partition racine afin d'assurer la sécurité et laisse le choix entre ext4 et XFS.
 
 | Btrfs offre les fonctionnalités suivantes absentes d'autres systèmes de fichiers :
 * Instantané (snapshots), 
@@ -72,7 +72,7 @@ La technique de l'instantané, en particulier, garantit de pouvoir faire une sau
 Système de fichiers non journalisé
 ---------------------------------
 
-Vous l’aurez compris un système de fichiers non journalisé est un systeme de fichiers moin tolérant au panne. Suite à un incident il existe 2 procédé :
+Vous l’aurez compris un système de fichiers non journalisé est un systeme de fichiers moins tolérant au panne. Suite à un incident il existe 2 procédés :
 
 * Procédé des mises à jour prudentes qui, à un instant précis, rend le système de fichiers cohérent.
 * Procédé des programmes "éboueurs".
